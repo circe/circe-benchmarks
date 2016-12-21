@@ -1,0 +1,36 @@
+language: scala
+sudo: required
+dist: trusty
+
+scala:
+  - 2.10.6
+  - 2.11.8
+
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+
+matrix:
+  include:
+  - scala: 2.12.1
+    jdk: oraclejdk8
+
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot
+
+install:
+  - pip install --user codecov
+
+script:
+  - if [[ "$TRAVIS_SCALA_VERSION" != 2.12.* ]];
+    then
+      sbt ++$TRAVIS_SCALA_VERSION benchmark/test coverageReport && codecov;
+    else echo "Skipping benchmark tests and coverage reporting on 2.12";
+    fi
+
+  # See http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
+  # Tricks to avoid unnecessary cache updates
+  - find $HOME/.sbt -name "*.lock" | xargs rm
+  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
