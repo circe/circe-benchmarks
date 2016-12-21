@@ -1,5 +1,3 @@
-enablePlugins(JmhPlugin)
-
 organization in ThisBuild := "io.circe"
 
 val compilerOptions = Seq(
@@ -92,7 +90,6 @@ lazy val benchmark = circeModule("benchmark", mima = None)
     libraryDependencies ++= circeDependencies
   )
   .enablePlugins(JmhPlugin)
-
 
 lazy val circeDependencies = Seq(
   "io.circe" %% "circe-core",
