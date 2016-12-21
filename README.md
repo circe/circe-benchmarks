@@ -6,6 +6,19 @@
 
 This project provides benchmarks comparing the decoding and encoding performance of [circe][circe] with other open source libraries.
 
+## Running benchmarks
+
+See [Benchmark.scala](modules/benchmark/src/main/scala/io/circe/benchmark/Benchmark.scala) for the benchmark definitions.
+
+The following commands will run the individual benchmarks:
+```bash
+sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.EncodingBenchmark"
+sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.DecodingBenchmark"
+sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.ParsingBenchmark"
+sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.PrintingBenchmark"
+sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.CirceDerivationBenchmark"
+```
+
 ## Contributors and participation
 
 All circe projects support the [Typelevel][typelevel] [code of conduct][code-of-conduct] and we want
