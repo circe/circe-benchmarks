@@ -71,7 +71,7 @@ class ExampleData {
  *
  * The following command will run the benchmarks with reasonable settings:
  *
- * > sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.EncodingBenchmark"
+ * > sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.EncodingBenchmark"
  */
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
@@ -115,7 +115,7 @@ class EncodingBenchmark extends ExampleData {
  *
  * The following command will run the benchmarks with reasonable settings:
  *
- * > sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.DecodingBenchmark"
+ * > sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.DecodingBenchmark"
  */
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
@@ -159,7 +159,7 @@ class DecodingBenchmark extends ExampleData {
  *
  * The following command will run the benchmarks with reasonable settings:
  *
- * > sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.ParsingBenchmark"
+ * > sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.ParsingBenchmark"
  */
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
@@ -201,7 +201,7 @@ class ParsingBenchmark extends ExampleData {
  *
  * The following command will run the benchmarks with reasonable settings:
  *
- * > sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.PrintingBenchmark"
+ * > sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.PrintingBenchmark"
  */
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))
@@ -243,7 +243,7 @@ class PrintingBenchmark extends ExampleData {
  *
  * The following command will run the benchmarks with reasonable settings:
  *
- * > sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.CirceDerivationBenchmark"
+ * > sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.CirceDerivationBenchmark"
  */
 @State(Scope.Thread)
 @BenchmarkMode(Array(Mode.Throughput))

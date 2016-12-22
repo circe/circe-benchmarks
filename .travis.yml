@@ -19,7 +19,7 @@ install:
   - pip install --user codecov
 
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION benchmark/test coverageReport && codecov
+  - sbt ++$TRAVIS_SCALA_VERSION benchmarks/test coverageReport && codecov
 
   # See http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
   # Tricks to avoid unnecessary cache updates

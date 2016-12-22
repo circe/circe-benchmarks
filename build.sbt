@@ -13,17 +13,9 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-lazy val catsVersion = "0.8.1"
-lazy val jawnVersion = "0.10.4"
-lazy val shapelessVersion = "2.3.2"
-lazy val refinedVersion = "0.6.0"
-
 lazy val scalaTestVersion = "3.0.0"
-lazy val scalaCheckVersion = "1.13.4"
-lazy val disciplineVersion = "0.7.2"
 
 lazy val circeVersion = "0.6.1"
-lazy val previousCirceVersion = Some("0.6.1")
 
 lazy val baseSettings = Seq(
   scalacOptions ++= compilerOptions ++ (
@@ -55,15 +47,13 @@ lazy val baseSettings = Seq(
   unmanagedClasspath in Test ++= update.value.select(configurationFilter("compile-time"))
 )
 
-lazy val allSettings = baseSettings
-
 def circeProject(path: String)(project: Project) = {
   val docName = path.split("-").mkString(" ")
   project.settings(
     description := s"circe $docName",
     moduleName := s"circe-$path",
     name := s"Circe $docName",
-    allSettings
+    baseSettings
   )
 }
 
@@ -74,7 +64,7 @@ def circeModule(path: String, mima: Option[String]): Project = {
     .settings(mimaPreviousArtifacts := mima.map("io.circe" %% moduleName.value % _).toSet)
 }
 
-lazy val benchmark = circeModule("benchmark", mima = None)
+lazy val benchmarks = circeModule("benchmarks", mima = None)
   .settings(noPublishSettings)
   .settings(
     scalaVersion := "2.11.8",
