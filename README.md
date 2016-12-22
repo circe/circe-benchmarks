@@ -1,4 +1,4 @@
-# circe-benchmark
+# circe-benchmarks
 
 [![Build status](https://img.shields.io/travis/circe/circe-benchmark/master.svg)](https://travis-ci.org/circe/circe-benchmark)
 [![Coverage status](https://img.shields.io/codecov/c/github/circe/circe-spray/master.svg)](https://codecov.io/github/circe/circe-benchmark)
@@ -8,15 +8,15 @@ This project provides benchmarks comparing the decoding and encoding performance
 
 ## Running benchmarks
 
-See [Benchmark.scala](modules/benchmark/src/main/scala/io/circe/benchmark/Benchmark.scala) for the benchmark definitions.
+See [Benchmark.scala](modules/benchmarks/src/main/scala/io/circe/benchmark/Benchmark.scala) for the benchmark definitions.
 
 The following commands will run the individual benchmarks:
 ```bash
-sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.EncodingBenchmark"
-sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.DecodingBenchmark"
-sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.ParsingBenchmark"
-sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.PrintingBenchmark"
-sbt "benchmark/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.CirceDerivationBenchmark"
+sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.EncodingBenchmark"
+sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.DecodingBenchmark"
+sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.ParsingBenchmark"
+sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.PrintingBenchmark"
+sbt "benchmarks/jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmark.CirceDerivationBenchmark"
 ```
 
 ## Contributors and participation
@@ -29,7 +29,7 @@ request.
 
 ## License
 
-circe-benchmark is licensed under the **[Apache License, Version 2.0][apache]**
+circe-benchmarks is licensed under the **[Apache License, Version 2.0][apache]**
 (the "License"); you may not use this software except in compliance with the
 License.
 
