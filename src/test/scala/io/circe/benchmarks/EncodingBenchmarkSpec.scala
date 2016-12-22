@@ -1,4 +1,4 @@
-package io.circe.benchmark
+package io.circe.benchmarks
 
 import argonaut.Parse, argonaut.Argonaut._
 import org.scalatest.FlatSpec
