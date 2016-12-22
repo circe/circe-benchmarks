@@ -1,7 +1,7 @@
 # circe-benchmark
 
-[![Build status](https://img.shields.io/travis/circe/circe-benchmark/master.svg)](https://travis-ci.org/circe/circe-benchmark)
-[![Coverage status](https://img.shields.io/codecov/c/github/circe/circe-spray/master.svg)](https://codecov.io/github/circe/circe-benchmark)
+[![Build status](https://img.shields.io/travis/circe/circe-benchmarks/master.svg)](https://travis-ci.org/circe/circe-benchmarks)
+[![Coverage status](https://img.shields.io/codecov/c/github/circe/circe-benchmarks/master.svg)](https://codecov.io/github/circe/circe-benchmarks)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/circe/circe)
 
 This project provides benchmarks comparing the decoding and encoding performance of [circe][circe] with other open source libraries.
