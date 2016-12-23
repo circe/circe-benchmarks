@@ -1,4 +1,4 @@
-package io.circe.benchmark
+package io.circe.benchmarks
 
 import org.scalatest.FlatSpec
 

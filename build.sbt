@@ -13,11 +13,10 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-lazy val scalaTestVersion = "3.0.0"
+val circeVersion = "0.6.1"
+val scalaTestVersion = "3.0.1"
 
-lazy val circeVersion = "0.6.1"
-
-lazy val baseSettings = Seq(
+val baseSettings = Seq(
   scalacOptions ++= compilerOptions ++ (
     CrossVersion.partialVersion(scalaVersion.value) match {
       case Some((2, p)) if p >= 11 => Seq("-Ywarn-unused-import")
@@ -40,32 +39,17 @@ lazy val baseSettings = Seq(
       case _ => true
     }
   ),
-  coverageScalacPluginVersion := "1.3.0",
-  (scalastyleSources in Compile) ++= (unmanagedSourceDirectories in Compile).value,
-  ivyConfigurations += config("compile-time").hide,
-  unmanagedClasspath in Compile ++= update.value.select(configurationFilter("compile-time")),
-  unmanagedClasspath in Test ++= update.value.select(configurationFilter("compile-time"))
+  coverageScalacPluginVersion := "1.3.0"
 )
 
-def circeProject(path: String)(project: Project) = {
-  val docName = path.split("-").mkString(" ")
-  project.settings(
-    description := s"circe $docName",
-    moduleName := s"circe-$path",
-    name := s"Circe $docName",
-    baseSettings
-  )
-}
+val circeDependencies = Seq(
+  "io.circe" %% "circe-core",
+  "io.circe" %% "circe-generic",
+  "io.circe" %% "circe-jawn"
+).map(_ % circeVersion)
 
-def circeModule(path: String, mima: Option[String]): Project = {
-  val id = path.split("-").reduce(_ + _.capitalize)
-  Project(id, file(s"modules/$path"))
-    .configure(circeProject(path))
-    .settings(mimaPreviousArtifacts := mima.map("io.circe" %% moduleName.value % _).toSet)
-}
-
-lazy val benchmarks = circeModule("benchmarks", mima = None)
-  .settings(noPublishSettings)
+lazy val benchmark = project.in(file("."))
+  .settings(baseSettings ++ noPublishSettings)
   .settings(
     scalaVersion := "2.11.8",
     libraryDependencies ++= Seq(
@@ -80,12 +64,6 @@ lazy val benchmarks = circeModule("benchmarks", mima = None)
     libraryDependencies ++= circeDependencies
   )
   .enablePlugins(JmhPlugin)
-
-lazy val circeDependencies = Seq(
-  "io.circe" %% "circe-core",
-  "io.circe" %% "circe-generic",
-  "io.circe" %% "circe-jawn"
-).map(_ % circeVersion)
 
 lazy val noPublishSettings = Seq(
   publish := (),
