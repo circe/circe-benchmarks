@@ -44,24 +44,36 @@ val baseSettings = Seq(
 
 val circeDependencies = Seq(
   "io.circe" %% "circe-core",
-  "io.circe" %% "circe-generic",
   "io.circe" %% "circe-jawn"
 ).map(_ % circeVersion)
 
 lazy val benchmark = project.in(file("."))
   .settings(baseSettings ++ noPublishSettings)
   .settings(
-    scalaVersion := "2.11.8",
     libraryDependencies ++= Seq(
-      "com.typesafe.play" %% "play-json" % "2.3.10",
-      "io.argonaut" %% "argonaut" % "6.1",
+      "io.argonaut" %% "argonaut" % "6.2-RC2",
       "io.spray" %% "spray-json" % "1.3.2",
-      "io.github.netvl.picopickle" %% "picopickle-core" % "0.2.1",
-      "io.github.netvl.picopickle" %% "picopickle-backend-jawn" % "0.2.1",
       "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),
-    libraryDependencies ++= circeDependencies
+    libraryDependencies ++= circeDependencies,
+    libraryDependencies ++= (
+      CrossVersion.partialVersion(scalaVersion.value) match {
+        case Some((2, 10)) => Nil
+        case _ => Seq(
+          "com.typesafe.play" %% "play-json" % "2.6.0-M1"
+        )
+      }
+    ),
+    libraryDependencies ++= (
+      CrossVersion.partialVersion(scalaVersion.value) match {
+        case Some((2, 12)) => Nil
+        case _ => Seq(
+          "io.github.netvl.picopickle" %% "picopickle-core" % "0.3.1",
+          "io.github.netvl.picopickle" %% "picopickle-backend-jawn" % "0.3.1"
+        )
+      }
+    )
   )
   .enablePlugins(JmhPlugin)
 
