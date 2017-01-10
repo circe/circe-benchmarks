@@ -13,7 +13,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.6.1"
+val circeVersion = "0.7.0-M2"
 val scalaTestVersion = "3.0.1"
 
 val baseSettings = Seq(
