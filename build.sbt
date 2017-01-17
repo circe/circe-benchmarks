@@ -53,7 +53,7 @@ lazy val benchmark = project.in(file("."))
     libraryDependencies ++= Seq(
       "io.argonaut" %% "argonaut" % "6.2-RC2",
       "io.spray" %% "spray-json" % "1.3.2",
-      "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
+      "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),
     libraryDependencies ++= circeDependencies,
