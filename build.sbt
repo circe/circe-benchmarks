@@ -13,7 +13,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.7.0-M2"
+val circeVersion = "0.7.0"
 val scalaTestVersion = "3.0.1"
 
 val baseSettings = Seq(
@@ -52,7 +52,7 @@ lazy val benchmark = project.in(file("."))
   .settings(
     libraryDependencies ++= Seq(
       "io.argonaut" %% "argonaut" % "6.2-RC2",
-      "io.spray" %% "spray-json" % "1.3.2",
+      "io.spray" %% "spray-json" % "1.3.3",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),
