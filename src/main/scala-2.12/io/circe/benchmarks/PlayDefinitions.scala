@@ -27,32 +27,32 @@ trait PlayData { self: ExampleData =>
 
 trait PlayEncoding { self: ExampleData =>
   @Benchmark
-  def encodeFoosP: JsValue = encodeP(foos)
+  def encodeFoosPlay: JsValue = encodeP(foos)
 
   @Benchmark
-  def encodeIntsP: JsValue = encodeP(ints)
+  def encodeIntsPlay: JsValue = encodeP(ints)
 }
 
 trait PlayDecoding { self: ExampleData =>
   @Benchmark
-  def decodeFoosP: Map[String, Foo] = foosP.as[Map[String, Foo]]
+  def decodeFoosPlay: Map[String, Foo] = foosP.as[Map[String, Foo]]
 
   @Benchmark
-  def decodeIntsP: List[Int] = intsP.as[List[Int]]
+  def decodeIntsPlay: List[Int] = intsP.as[List[Int]]
 }
 
 trait PlayPrinting { self: ExampleData =>
   @Benchmark
-  def printFoosP: String = Json.stringify(foosP)
+  def printFoosPlay: String = Json.stringify(foosP)
 
   @Benchmark
-  def printIntsP: String = Json.stringify(intsP)
+  def printIntsPlay: String = Json.stringify(intsP)
 }
 
 trait PlayParsing { self: ExampleData =>
   @Benchmark
-  def parseFoosP: JsValue = Json.parse(foosJson)
+  def parseFoosPlay: JsValue = Json.parse(foosJson)
 
   @Benchmark
-  def parseIntsP: JsValue = Json.parse(intsJson)
+  def parseIntsPlay: JsValue = Json.parse(intsJson)
 }

@@ -8,26 +8,26 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
   import benchmark._
 
   "The decoding benchmark" should "correctly decode integers using Circe" in {
-    assert(decodeIntsC === ints)
+    assert(decodeIntsCirce === ints)
   }
 
   it should "correctly decode integers using Argonaut" in {
-    assert(decodeIntsA === ints)
+    assert(decodeIntsArgonaut === ints)
   }
 
   it should "correctly decode integers using Spray JSON" in {
-    assert(decodeIntsS === ints)
+    assert(decodeIntsSpray === ints)
   }
 
   it should "correctly decode case classes using Circe" in {
-    assert(decodeFoosC === foos)
+    assert(decodeFoosCirce === foos)
   }
 
   it should "correctly decode case classes using Argonaut" in {
-    assert(decodeFoosA === foos)
+    assert(decodeFoosArgonaut === foos)
   }
 
   it should "correctly decode case classes using Spray JSON" in {
-    assert(decodeFoosS === foos)
+    assert(decodeFoosSpray === foos)
   }
 }
