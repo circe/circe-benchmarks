@@ -3,7 +3,7 @@ package io.circe.benchmarks
 import java.util.concurrent.TimeUnit
 import org.openjdk.jmh.annotations._
 
-class ExampleData extends ArgonautData with CirceData with SprayData with PlayData with PicopickleData {
+class ExampleData extends ArgonautData with CirceData with SprayData with PlayData with PicopickleData with Json4sData {
   lazy val ints: List[Int] = (0 to 1000).toList
 
   lazy val foos: Map[String, Foo] = List.tabulate(100) { i =>
@@ -25,7 +25,7 @@ class ExampleData extends ArgonautData with CirceData with SprayData with PlayDa
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
 class EncodingBenchmark extends ExampleData
-  with ArgonautEncoding with CirceEncoding with SprayEncoding with PlayEncoding with PicopickleEncoding
+  with ArgonautEncoding with CirceEncoding with SprayEncoding with PlayEncoding with PicopickleEncoding with Json4sEncoding
 
 /**
  * Compare the performance of decoding operations.
@@ -38,7 +38,7 @@ class EncodingBenchmark extends ExampleData
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
 class DecodingBenchmark extends ExampleData
-  with ArgonautDecoding with CirceDecoding with SprayDecoding with PlayDecoding with PicopickleDecoding
+  with ArgonautDecoding with CirceDecoding with SprayDecoding with PlayDecoding with PicopickleDecoding with Json4sDecoding
 
 /**
  * Compare the performance of printing operations.
@@ -51,7 +51,7 @@ class DecodingBenchmark extends ExampleData
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
 class PrintingBenchmark extends ExampleData
-  with ArgonautPrinting with CircePrinting with SprayPrinting with PlayPrinting with PicopicklePrinting
+  with ArgonautPrinting with CircePrinting with SprayPrinting with PlayPrinting with PicopicklePrinting with Json4sPrinting
 
 /**
  * Compare the performance of parsing operations.
@@ -64,4 +64,4 @@ class PrintingBenchmark extends ExampleData
 @BenchmarkMode(Array(Mode.Throughput))
 @OutputTimeUnit(TimeUnit.SECONDS)
 class ParsingBenchmark extends ExampleData
-  with ArgonautParsing with CirceParsing with SprayParsing with PlayParsing with PicopickleParsing
+  with ArgonautParsing with CirceParsing with SprayParsing with PlayParsing with PicopickleParsing with Json4sParsing

@@ -1,6 +1,8 @@
 package io.circe.benchmarks
 
-import argonaut.Parse, argonaut.Argonaut._
+import argonaut.Parse
+import argonaut.Argonaut._
+import org.json4s.jackson.JsonMethods
 import org.scalatest.FlatSpec
 
 class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
@@ -36,5 +38,9 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
 
   it should "correctly encode case classes using Spray JSON" in {
     assert(decodeFoos(encodeFoosS.compactPrint) === Some(foos))
+  }
+
+  it should "correctly encode case classes using Json4s" in {
+    assert(decodeFoos(JsonMethods.compact(encodeFoos4s)) === Some(foos))
   }
 }
