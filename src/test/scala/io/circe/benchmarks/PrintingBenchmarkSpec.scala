@@ -37,4 +37,8 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
   it should "correctly print case classes using Spray JSON" in {
     assert(decodeFoos(printFoosS) === Some(foos))
   }
+
+  it should "correnctly print case classes using Json4s" in {
+    assert(decodeFoos(printFoos4s) === Some(foos))
+  }
 }

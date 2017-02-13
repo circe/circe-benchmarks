@@ -30,4 +30,8 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
   it should "correctly decode case classes using Spray JSON" in {
     assert(decodeFoosS === foos)
   }
+
+  it should "correctly decode case classes using Json4s" in {
+    assert(decodeFoos4s === foos)
+  }
 }

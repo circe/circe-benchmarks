@@ -53,6 +53,7 @@ lazy val benchmark = project.in(file("."))
     libraryDependencies ++= Seq(
       "io.argonaut" %% "argonaut" % "6.2-RC2",
       "io.spray" %% "spray-json" % "1.3.3",
+      "org.json4s" %% "json4s-jackson" % "3.5.0",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),

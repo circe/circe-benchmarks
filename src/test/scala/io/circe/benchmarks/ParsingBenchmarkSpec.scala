@@ -30,4 +30,8 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
   it should "correctly parse case classes using Spray JSON" in {
     assert(parseFoosS === foosS)
   }
+
+  it should "correctly parse case classes using Json4s" in {
+    assert(parseFoos4s === foos4s)
+  }
 }
