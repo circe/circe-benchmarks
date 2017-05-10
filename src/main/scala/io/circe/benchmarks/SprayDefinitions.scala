@@ -31,32 +31,32 @@ trait SprayData { self: ExampleData =>
 
 trait SprayEncoding { self: ExampleData =>
   @Benchmark
-  def encodeFoosS: JsValue = encodeS(foos)
+  def encodeFoosSpray: JsValue = encodeS(foos)
 
   @Benchmark
-  def encodeIntsS: JsValue = encodeS(ints)
+  def encodeIntsSpray: JsValue = encodeS(ints)
 }
 
 trait SprayDecoding { self: ExampleData =>
   @Benchmark
-  def decodeFoosS: Map[String, Foo] = foosS.convertTo[Map[String, Foo]]
+  def decodeFoosSpray: Map[String, Foo] = foosS.convertTo[Map[String, Foo]]
 
   @Benchmark
-  def decodeIntsS: List[Int] = intsS.convertTo[List[Int]]
+  def decodeIntsSpray: List[Int] = intsS.convertTo[List[Int]]
 }
 
 trait SprayPrinting { self: ExampleData =>
   @Benchmark
-  def printFoosS: String = foosS.compactPrint
+  def printFoosSpray: String = foosS.compactPrint
 
   @Benchmark
-  def printIntsS: String = intsS.compactPrint
+  def printIntsSpray: String = intsS.compactPrint
 }
 
 trait SprayParsing { self: ExampleData =>
   @Benchmark
-  def parseFoosS: JsValue = JsonParser(foosJson)
+  def parseFoosSpray: JsValue = JsonParser(foosJson)
 
   @Benchmark
-  def parseIntsS: JsValue = JsonParser(intsJson)
+  def parseIntsSpray: JsValue = JsonParser(intsJson)
 }

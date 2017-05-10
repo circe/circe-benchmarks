@@ -34,32 +34,32 @@ trait CirceData { self: ExampleData =>
 
 trait CirceEncoding { self: ExampleData =>
   @Benchmark
-  def encodeFoosC: Json = encodeC(foos)
+  def encodeFoosCirce: Json = encodeC(foos)
 
   @Benchmark
-  def encodeIntsC: Json = encodeC(ints)
+  def encodeIntsCirce: Json = encodeC(ints)
 }
 
 trait CirceDecoding { self: ExampleData =>
   @Benchmark
-  def decodeFoosC: Map[String, Foo] = foosC.as[Map[String, Foo]].right.getOrElse(throw new Exception)
+  def decodeFoosCirce: Map[String, Foo] = foosC.as[Map[String, Foo]].right.getOrElse(throw new Exception)
 
   @Benchmark
-  def decodeIntsC: List[Int] = intsC.as[List[Int]].right.getOrElse(throw new Exception)
+  def decodeIntsCirce: List[Int] = intsC.as[List[Int]].right.getOrElse(throw new Exception)
 }
 
 trait CircePrinting { self: ExampleData =>
   @Benchmark
-  def printFoosC: String = foosC.noSpaces
+  def printFoosCirce: String = foosC.noSpaces
 
   @Benchmark
-  def printIntsC: String = intsC.noSpaces
+  def printIntsCirce: String = intsC.noSpaces
 }
 
 trait CirceParsing { self: ExampleData =>
   @Benchmark
-  def parseFoosC: Json = parse(foosJson).right.getOrElse(throw new Exception)
+  def parseFoosCirce: Json = parse(foosJson).right.getOrElse(throw new Exception)
 
   @Benchmark
-  def parseIntsC: Json = parse(intsJson).right.getOrElse(throw new Exception)
+  def parseIntsCirce: Json = parse(intsJson).right.getOrElse(throw new Exception)
 }

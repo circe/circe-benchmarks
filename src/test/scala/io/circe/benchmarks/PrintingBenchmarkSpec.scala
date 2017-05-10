@@ -15,27 +15,27 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
     Parse.decodeOption[Map[String, Foo]](json)
 
   "The printing benchmark" should "correctly print integers using Circe" in {
-    assert(decodeInts(printIntsC) === Some(ints))
+    assert(decodeInts(printIntsCirce) === Some(ints))
   }
 
   it should "correctly print integers using Argonaut" in {
-    assert(decodeInts(printIntsA) === Some(ints))
+    assert(decodeInts(printIntsArgonaut) === Some(ints))
   }
 
   it should "correctly print integers using Spray JSON" in {
-    assert(decodeInts(printIntsS) === Some(ints))
+    assert(decodeInts(printIntsSpray) === Some(ints))
   }
 
   it should "correctly print case classes using Circe" in {
-    assert(decodeFoos(printFoosC) === Some(foos))
+    assert(decodeFoos(printFoosCirce) === Some(foos))
   }
 
   it should "correctly print case classes using Argonaut" in {
-    assert(decodeFoos(printFoosA) === Some(foos))
+    assert(decodeFoos(printFoosArgonaut) === Some(foos))
   }
 
   it should "correctly print case classes using Spray JSON" in {
-    assert(decodeFoos(printFoosS) === Some(foos))
+    assert(decodeFoos(printFoosSpray) === Some(foos))
   }
 
   it should "correnctly print case classes using Json4s" in {

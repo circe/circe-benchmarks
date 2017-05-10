@@ -28,32 +28,32 @@ trait ArgonautData { self: ExampleData =>
 
 trait ArgonautEncoding { self: ExampleData =>
   @Benchmark
-  def encodeFoosA: Json = encodeA(foos)
+  def encodeFoosArgonaut: Json = encodeA(foos)
 
   @Benchmark
-  def encodeIntsA: Json = encodeA(ints)
+  def encodeIntsArgonaut: Json = encodeA(ints)
 }
 
 trait ArgonautDecoding { self: ExampleData =>
   @Benchmark
-  def decodeFoosA: Map[String, Foo] = foosA.as[Map[String, Foo]].result.right.getOrElse(throw new Exception)
+  def decodeFoosArgonaut: Map[String, Foo] = foosA.as[Map[String, Foo]].result.right.getOrElse(throw new Exception)
 
   @Benchmark
-  def decodeIntsA: List[Int] = intsA.as[List[Int]].result.right.getOrElse(throw new Exception)
+  def decodeIntsArgonaut: List[Int] = intsA.as[List[Int]].result.right.getOrElse(throw new Exception)
 }
 
 trait ArgonautPrinting { self: ExampleData =>
   @Benchmark
-  def printFoosA: String = foosA.nospaces
+  def printFoosArgonaut: String = foosA.nospaces
 
   @Benchmark
-  def printIntsA: String = intsA.nospaces
+  def printIntsArgonaut: String = intsA.nospaces
 }
 
 trait ArgonautParsing { self: ExampleData =>
   @Benchmark
-  def parseFoosA: Json = Parse.parse(foosJson).right.getOrElse(throw new Exception)
+  def parseFoosArgonaut: Json = Parse.parse(foosJson).right.getOrElse(throw new Exception)
 
   @Benchmark
-  def parseIntsA: Json = Parse.parse(intsJson).right.getOrElse(throw new Exception)
+  def parseIntsArgonaut: Json = Parse.parse(intsJson).right.getOrElse(throw new Exception)
 }

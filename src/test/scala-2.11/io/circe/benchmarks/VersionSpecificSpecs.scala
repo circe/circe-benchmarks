@@ -11,7 +11,7 @@ trait VersionSpecificDecodingSpec { self: DecodingBenchmarkSpec =>
   }
 
   it should "correctly decode integers using Play JSON" in {
-    assert(decodeIntsP === ints)
+    assert(decodeIntsPlay === ints)
   }
 
   it should "correctly decode case classes using Picopickle" in {
@@ -19,7 +19,7 @@ trait VersionSpecificDecodingSpec { self: DecodingBenchmarkSpec =>
   }
 
   it should "correctly decode case classes using Play JSON" in {
-    assert(decodeFoosP === foos)
+    assert(decodeFoosPlay === foos)
   }
 }
 
@@ -31,7 +31,7 @@ trait VersionSpecificEncodingSpec { self: EncodingBenchmarkSpec =>
   }
 
   it should "correctly encode integers using Play JSON" in {
-    assert(self.decodeInts(Json.prettyPrint(encodeIntsP)) === Some(ints))
+    assert(self.decodeInts(Json.prettyPrint(encodeIntsPlay)) === Some(ints))
   }
 
   it should "correctly encode case classes using Picopickle" in {
@@ -39,7 +39,7 @@ trait VersionSpecificEncodingSpec { self: EncodingBenchmarkSpec =>
   }
 
   it should "correctly encode case classes using Play JSON" in {
-    assert(self.decodeFoos(Json.prettyPrint(encodeFoosP)) === Some(foos))
+    assert(self.decodeFoos(Json.prettyPrint(encodeFoosPlay)) === Some(foos))
   }
 }
 
@@ -51,7 +51,7 @@ trait VersionSpecificParsingSpec { self: ParsingBenchmarkSpec =>
   }
 
   it should "correctly parse integers using Play JSON" in {
-    assert(parseIntsP === intsP)
+    assert(parseIntsPlay === intsP)
   }
 
   it should "correctly parse case classes using Picopickle" in {
@@ -59,7 +59,7 @@ trait VersionSpecificParsingSpec { self: ParsingBenchmarkSpec =>
   }
 
   it should "correctly parse case classes using Play JSON" in {
-    assert(parseFoosP === foosP)
+    assert(parseFoosPlay === foosP)
   }
 }
 
@@ -71,7 +71,7 @@ trait VersionSpecificPrintingSpec { self: PrintingBenchmarkSpec =>
   }
 
   it should "correctly print integers using Play JSON" in {
-    assert(self.decodeInts(printIntsP) === Some(ints))
+    assert(self.decodeInts(printIntsPlay) === Some(ints))
   }
   
   it should "correctly print case classes using Picopickle" in {
@@ -79,6 +79,6 @@ trait VersionSpecificPrintingSpec { self: PrintingBenchmarkSpec =>
   }
 
   it should "correctly print case classes using Play JSON" in {
-    assert(self.decodeFoos(printFoosP) === Some(foos))
+    assert(self.decodeFoos(printFoosPlay) === Some(foos))
   }
 }

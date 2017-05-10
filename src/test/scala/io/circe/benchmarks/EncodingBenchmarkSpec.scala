@@ -17,27 +17,27 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
     Parse.decodeOption[Map[String, Foo]](json)
 
   "The encoding benchmark" should "correctly encode integers using Circe" in {
-    assert(decodeInts(encodeIntsC.noSpaces) === Some(ints))
+    assert(decodeInts(encodeIntsCirce.noSpaces) === Some(ints))
   }
 
   it should "correctly encode integers using Argonaut" in {
-    assert(decodeInts(encodeIntsA.nospaces) === Some(ints))
+    assert(decodeInts(encodeIntsArgonaut.nospaces) === Some(ints))
   }
 
   it should "correctly encode integers using Spray JSON" in {
-    assert(decodeInts(encodeIntsS.compactPrint) === Some(ints))
+    assert(decodeInts(encodeIntsSpray.compactPrint) === Some(ints))
   }
 
   it should "correctly encode case classes using Circe" in {
-    assert(decodeFoos(encodeFoosC.noSpaces) === Some(foos))
+    assert(decodeFoos(encodeFoosCirce.noSpaces) === Some(foos))
   }
 
   it should "correctly encode case classes using Argonaut" in {
-    assert(decodeFoos(encodeFoosA.nospaces) === Some(foos))
+    assert(decodeFoos(encodeFoosArgonaut.nospaces) === Some(foos))
   }
 
   it should "correctly encode case classes using Spray JSON" in {
-    assert(decodeFoos(encodeFoosS.compactPrint) === Some(foos))
+    assert(decodeFoos(encodeFoosSpray.compactPrint) === Some(foos))
   }
 
   it should "correctly encode case classes using Json4s" in {
