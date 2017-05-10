@@ -13,8 +13,8 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.7.0"
-val scalaTestVersion = "3.0.1"
+val circeVersion = "0.8.0"
+val scalaTestVersion = "3.0.2"
 
 val baseSettings = Seq(
   scalacOptions ++= compilerOptions ++ (
@@ -51,9 +51,9 @@ lazy val benchmark = project.in(file("."))
   .settings(baseSettings ++ noPublishSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "io.argonaut" %% "argonaut" % "6.2-RC2",
+      "io.argonaut" %% "argonaut" % "6.2",
       "io.spray" %% "spray-json" % "1.3.3",
-      "org.json4s" %% "json4s-jackson" % "3.5.0",
+      "org.json4s" %% "json4s-jackson" % "3.5.2",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),
@@ -62,7 +62,7 @@ lazy val benchmark = project.in(file("."))
       CrossVersion.partialVersion(scalaVersion.value) match {
         case Some((2, 10)) => Nil
         case _ => Seq(
-          "com.typesafe.play" %% "play-json" % "2.6.0-M1"
+          "com.typesafe.play" %% "play-json" % "2.6.0-M7"
         )
       }
     ),
