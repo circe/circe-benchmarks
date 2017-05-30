@@ -55,6 +55,7 @@ lazy val benchmark = project.in(file("."))
       "io.spray" %% "spray-json" % "1.3.3",
       "org.json4s" %% "json4s-jackson" % "3.5.2",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
+      "com.fasterxml.jackson.module"  %% "jackson-module-scala"     % "2.8.4",
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),
     libraryDependencies ++= circeDependencies,
