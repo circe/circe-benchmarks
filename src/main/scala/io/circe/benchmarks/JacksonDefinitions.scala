@@ -1,8 +1,7 @@
 package io.circe.benchmarks
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.{ JsonNode, ObjectMapper }
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
-import com.fasterxml.jackson.databind.JsonNode
 import org.openjdk.jmh.annotations._
 
 trait JacksonData { self: ExampleData =>
