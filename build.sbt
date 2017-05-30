@@ -52,10 +52,11 @@ lazy val benchmark = project.in(file("."))
   .settings(
     libraryDependencies ++= Seq(
       "io.argonaut" %% "argonaut" % "6.2",
+      "io.circe" %% "circe-derivation" % "0.8.0-M2",
       "io.spray" %% "spray-json" % "1.3.3",
       "org.json4s" %% "json4s-jackson" % "3.5.2",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
-      "com.fasterxml.jackson.module"  %% "jackson-module-scala"     % "2.8.4",
+      "com.fasterxml.jackson.module"  %% "jackson-module-scala" % "2.8.4",
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),
     libraryDependencies ++= circeDependencies,
