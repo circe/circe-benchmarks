@@ -18,6 +18,10 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
     assert(decodeInts(printIntsCirce) === Some(ints))
   }
 
+  it should "correctly print integers using Circe Jackson" in {
+    assert(decodeInts(printIntsCirceJackson) === Some(ints))
+  }
+
   it should "correctly print integers using Argonaut" in {
     assert(decodeInts(printIntsArgonaut) === Some(ints))
   }
@@ -26,8 +30,20 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
     assert(decodeInts(printIntsSpray) === Some(ints))
   }
 
+  it should "correctly print integers using Json4s" in {
+    assert(decodeInts(printInts4s) === Some(ints))
+  }
+
+  it should "correctly print integers using Jackson" in {
+    assert(decodeInts(printIntsJackson) === Some(ints))
+  }
+
   it should "correctly print case classes using Circe" in {
     assert(decodeFoos(printFoosCirce) === Some(foos))
+  }
+
+  it should "correctly print case classes using Circe Jackson" in {
+    assert(decodeFoos(printFoosCirceJackson) === Some(foos))
   }
 
   it should "correctly print case classes using Argonaut" in {
@@ -38,7 +54,11 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
     assert(decodeFoos(printFoosSpray) === Some(foos))
   }
 
-  it should "correnctly print case classes using Json4s" in {
+  it should "correctly print case classes using Json4s" in {
     assert(decodeFoos(printFoos4s) === Some(foos))
+  }
+
+  it should "correctly print case classes using Jackson" in {
+    assert(decodeFoos(printFoosJackson) === Some(foos))
   }
 }
