@@ -19,6 +19,14 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
     assert(decodeIntsSpray === ints)
   }
 
+  it should "correctly decode integers using Json4s" in {
+    assert(decodeInts4s === ints)
+  }
+
+  it should "correctly decode integers using Jackson" in {
+    assert(decodeIntsJackson === ints)
+  }
+
   it should "correctly decode case classes using Circe" in {
     assert(decodeFoosCirce === foos)
   }
@@ -33,5 +41,9 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
 
   it should "correctly decode case classes using Json4s" in {
     assert(decodeFoos4s === foos)
+  }
+
+  it should "correctly decode case classes using Jackson" in {
+    assert(decodeFoosJackson === foos)
   }
 }

@@ -44,6 +44,7 @@ val baseSettings = Seq(
 
 val circeDependencies = Seq(
   "io.circe" %% "circe-core",
+  "io.circe" %% "circe-jackson28",
   "io.circe" %% "circe-jawn"
 ).map(_ % circeVersion)
 
@@ -55,7 +56,7 @@ lazy val benchmark = project.in(file("."))
       "io.spray" %% "spray-json" % "1.3.3",
       "org.json4s" %% "json4s-jackson" % "3.5.2",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
-      "com.fasterxml.jackson.module"  %% "jackson-module-scala"     % "2.8.4",
+      "com.fasterxml.jackson.module"  %% "jackson-module-scala" % "2.8.8",
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
     ),
     libraryDependencies ++= circeDependencies,
@@ -63,7 +64,8 @@ lazy val benchmark = project.in(file("."))
       CrossVersion.partialVersion(scalaVersion.value) match {
         case Some((2, 10)) => Nil
         case _ => Seq(
-          "com.typesafe.play" %% "play-json" % "2.6.0-M7"
+          "com.typesafe.play" %% "play-json" % "2.6.0-RC1",
+          "io.circe" %% "circe-derivation" % "0.8.0-M2"
         )
       }
     ),

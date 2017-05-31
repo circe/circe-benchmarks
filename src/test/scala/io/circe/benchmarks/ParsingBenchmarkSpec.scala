@@ -11,6 +11,10 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
     assert(parseIntsCirce === intsC)
   }
 
+  it should "correctly parse integers using Circe Jackson" in {
+    assert(parseIntsCirceJackson === intsC)
+  }
+
   it should "correctly parse integers using Argonaut" in {
     assert(parseIntsArgonaut === intsA)
   }
@@ -19,8 +23,20 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
     assert(parseIntsSpray === intsS)
   }
 
+  it should "correctly parse integers using Json4s" in {
+    assert(parseInts4s === ints4s)
+  }
+
+  it should "correctly parse integers using Jackson" in {
+    assert(parseIntsJackson === intsJackson)
+  }
+
   it should "correctly parse case classes using Circe" in {
     assert(parseFoosCirce === foosC)
+  }
+
+  it should "correctly parse case classes using Circe Jackson" in {
+    assert(parseFoosCirceJackson === foosC)
   }
 
   it should "correctly parse case classes using Argonaut" in {
@@ -33,5 +49,13 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
 
   it should "correctly parse case classes using Json4s" in {
     assert(parseFoos4s === foos4s)
+  }
+
+  it should "correctly parse case classes using Jackson" in {
+    /**
+     * A workaround for the fact that I don't remember how `JsonNode` equality
+     * works in Jackson.
+     */
+    assert(mapper.writeValueAsString(parseFoosJackson) === mapper.writeValueAsString(foosJackson))
   }
 }

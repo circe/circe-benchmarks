@@ -28,6 +28,14 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
     assert(decodeInts(encodeIntsSpray.compactPrint) === Some(ints))
   }
 
+  it should "correctly encode integers using Json4s" in {
+    assert(decodeInts(JsonMethods.compact(encodeInts4s)) === Some(ints))
+  }
+
+  it should "correctly encode integers using Jackson" in {
+    assert(decodeInts(mapper.writeValueAsString(encodeIntsJackson)) === Some(ints))
+  }
+
   it should "correctly encode case classes using Circe" in {
     assert(decodeFoos(encodeFoosCirce.noSpaces) === Some(foos))
   }
@@ -42,5 +50,9 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
 
   it should "correctly encode case classes using Json4s" in {
     assert(decodeFoos(JsonMethods.compact(encodeFoos4s)) === Some(foos))
+  }
+
+  it should "correctly encode case classes using Jackson" in {
+    assert(decodeFoos(mapper.writeValueAsString(encodeFoosJackson)) === Some(foos))
   }
 }

@@ -1,29 +1,7 @@
 package io.circe.benchmarks
 
-import io.circe._, io.circe.jawn.parse, io.circe.syntax._
+import io.circe._, io.circe.jackson, io.circe.jawn.parse
 import org.openjdk.jmh.annotations._
-
-trait CirceFooInstances {
-  implicit val circeEncodeFoo: Encoder[Foo] = new Encoder[Foo] {
-    def apply(foo: Foo): Json = Json.obj(
-      "s" -> foo.s.asJson,
-      "d" -> foo.d.asJson,
-      "i" -> foo.i.asJson,
-      "l" -> foo.l.asJson,
-      "bs" -> foo.bs.asJson
-    )
-  }
-
-  implicit val circeDecodeFoo: Decoder[Foo] = new Decoder[Foo] {
-    def apply(c: HCursor): Decoder.Result[Foo] = for {
-      s <- c.get[String]("s").right
-      d <- c.get[Double]("d").right
-      i <- c.get[Int]("i").right
-      l <- c.get[Long]("l").right
-      bs <- c.get[List[Boolean]]("bs").right
-    } yield Foo(s, d, i, l, bs)
-  }
-}
 
 trait CirceData { self: ExampleData =>
   @inline def encodeC[A](a: A)(implicit encode: Encoder[A]): Json = encode(a)
@@ -54,6 +32,12 @@ trait CircePrinting { self: ExampleData =>
 
   @Benchmark
   def printIntsCirce: String = intsC.noSpaces
+
+  @Benchmark
+  def printFoosCirceJackson: String = jackson.jacksonPrint(foosC)
+
+  @Benchmark
+  def printIntsCirceJackson: String = jackson.jacksonPrint(intsC)
 }
 
 trait CirceParsing { self: ExampleData =>
@@ -62,4 +46,10 @@ trait CirceParsing { self: ExampleData =>
 
   @Benchmark
   def parseIntsCirce: Json = parse(intsJson).right.getOrElse(throw new Exception)
+
+  @Benchmark
+  def parseFoosCirceJackson: Json = jackson.parse(foosJson).right.getOrElse(throw new Exception)
+
+  @Benchmark
+  def parseIntsCirceJackson: Json = jackson.parse(intsJson).right.getOrElse(throw new Exception)
 }

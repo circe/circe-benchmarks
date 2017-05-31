@@ -1,5 +1,6 @@
 package io.circe.benchmarks
 
+import com.fasterxml.jackson.core.`type`.TypeReference
 import com.fasterxml.jackson.databind.{ JsonNode, ObjectMapper }
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
 import org.openjdk.jmh.annotations._
@@ -8,34 +9,37 @@ trait JacksonData { self: ExampleData =>
   val mapper: ObjectMapper = new ObjectMapper()
   mapper.registerModule(DefaultScalaModule)
 
-  @inline def encodeJackson[T](value: T): String = mapper.writeValueAsString(value)
+  @inline def encodeJackson[T](value: T): JsonNode = mapper.valueToTree(value)
 
-  val foosJackson: String = encodeJackson(foos)
-  val intsJackson: String = encodeJackson(ints)
+  val foosJackson: JsonNode = encodeJackson(foos)
+  val intsJackson: JsonNode = encodeJackson(ints)
 }
 
 trait JacksonEncoding { self: ExampleData =>
   @Benchmark
-  def encodeFoosJackson: String = encodeJackson(foos)
+  def encodeFoosJackson: JsonNode = encodeJackson(foos)
 
   @Benchmark
-  def encodeIntsJackson: String = encodeJackson(ints)
+  def encodeIntsJackson: JsonNode = encodeJackson(ints)
 }
 
 trait JacksonDecoding { self: ExampleData =>
   @Benchmark
-  def decodeFoosJackson: Map[String, Foo] = mapper.readValue(foosJackson, classOf[Map[String, Foo]])
+  def decodeFoosJackson: Map[String, Foo] = mapper.convertValue(
+    foosJackson,
+    new TypeReference[Map[String, Foo]] {}
+  )
 
   @Benchmark
-  def decodeIntsJackson: List[Int] = mapper.readValue(intsJackson, classOf[List[Int]])
+  def decodeIntsJackson: List[Int] = mapper.treeToValue(intsJackson, classOf[List[Int]])
 }
 
 trait JacksonPrinting { self: ExampleData =>
   @Benchmark
-  def printFoosJackson: String = foosJackson.toString()
+  def printFoosJackson: String = mapper.writeValueAsString(foosJackson)
 
   @Benchmark
-  def printIntsJackson: String = intsJackson.toString()
+  def printIntsJackson: String = mapper.writeValueAsString(intsJackson)
 }
 
 trait JacksonParsing { self: ExampleData =>
