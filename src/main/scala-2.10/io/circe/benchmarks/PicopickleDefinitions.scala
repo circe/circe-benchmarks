@@ -17,6 +17,22 @@ trait PicopickleData { self: ExampleData =>
   val intsPico: backend.BValue = encodePico(ints)
 }
 
+trait PicopickleWriting { self: ExampleData =>
+  @Benchmark
+  def writeFoosPico: String = writeAst(encodePico(foos))
+
+  @Benchmark
+  def writeIntsPico: String = writeAst(encodePico(ints))
+}
+
+trait PicopickleReading { self: ExampleData =>
+  @Benchmark
+  def readFoosPico: Map[String, Foo] = read[Map[String, Foo]](readAst(foosJson))
+
+  @Benchmark
+  def readIntsPico: List[Int] = read[List[Int]](readAst(intsJson))
+}
+
 trait PicopickleEncoding { self: ExampleData =>
   @Benchmark
   def encodeIntsPico: backend.BValue = encodePico(ints)

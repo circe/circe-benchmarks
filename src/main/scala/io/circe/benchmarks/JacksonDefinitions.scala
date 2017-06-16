@@ -15,6 +15,22 @@ trait JacksonData { self: ExampleData =>
   val intsJackson: JsonNode = encodeJackson(ints)
 }
 
+trait JacksonWriting { self: ExampleData =>
+  @Benchmark
+  def writeFoosJackson: String = mapper.writeValueAsString(foos)
+
+  @Benchmark
+  def writeIntsJackson: String = mapper.writeValueAsString(ints)
+}
+
+trait JacksonReading { self: ExampleData =>
+  @Benchmark
+  def readFoosJackson: Map[String, Foo] = mapper.readValue(foosJson, new TypeReference[Map[String, Foo]] {})
+
+  @Benchmark
+  def readIntsJackson: List[Int] = mapper.readValue(intsJson, classOf[List[Int]])
+}
+
 trait JacksonEncoding { self: ExampleData =>
   @Benchmark
   def encodeFoosJackson: JsonNode = encodeJackson(foos)

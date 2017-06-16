@@ -1,6 +1,6 @@
 package io.circe.benchmarks
 
-import io.circe._, io.circe.jackson, io.circe.jawn.parse
+import io.circe._, io.circe.jackson, io.circe.jawn.{ decode, parse }
 import org.openjdk.jmh.annotations._
 
 trait CirceData { self: ExampleData =>
@@ -8,6 +8,22 @@ trait CirceData { self: ExampleData =>
 
   val foosC: Json = encodeC(foos)
   val intsC: Json = encodeC(ints)
+}
+
+trait CirceWriting { self: ExampleData =>
+  @Benchmark
+  def writeFoosCirce: String = encodeC(foos).noSpaces
+
+  @Benchmark
+  def writeIntsCirce: String = encodeC(ints).noSpaces
+}
+
+trait CirceReading { self: ExampleData =>
+  @Benchmark
+  def readFoosCirce: Map[String, Foo] = decode[Map[String, Foo]](foosJson).right.get
+
+  @Benchmark
+  def readIntsCirce: List[Int] = decode[List[Int]](intsJson).right.get
 }
 
 trait CirceEncoding { self: ExampleData =>

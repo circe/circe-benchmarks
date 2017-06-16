@@ -20,7 +20,7 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
   }
 
   it should "correctly decode integers using Json4s" in {
-    assert(decodeInts4s === ints)
+    assert(decodeIntsJson4s === ints)
   }
 
   it should "correctly decode integers using Jackson" in {
@@ -40,7 +40,7 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
   }
 
   it should "correctly decode case classes using Json4s" in {
-    assert(decodeFoos4s === foos)
+    assert(decodeFoosJson4s === foos)
   }
 
   it should "correctly decode case classes using Jackson" in {
