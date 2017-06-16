@@ -2,6 +2,30 @@ package io.circe.benchmarks
 
 import play.api.libs.json.Json
 
+trait VersionSpecificWritingSpec { self: WritingBenchmarkSpec =>
+  import benchmark._
+
+  "The 2.12 writing benchmark" should "correctly write integers using Play JSON" in {
+    assert(decodeInts(writeIntsPlay) === Some(ints))
+  }
+
+  it should "correctly write case classes using Play JSON" in {
+    assert(decodeFoos(writeFoosPlay) === Some(foos))
+  }
+}
+
+trait VersionSpecificReadingSpec { self: ReadingBenchmarkSpec =>
+  import benchmark._
+
+  "The 2.12 reading benchmark" should "correctly read integers using Play JSON" in {
+    assert(readIntsPlay === ints)
+  }
+
+  it should "correctly read case classes using Play JSON" in {
+    assert(readFoosPlay === foos)
+  }
+}
+
 trait VersionSpecificDecodingSpec { self: DecodingBenchmarkSpec =>
   import benchmark._
 

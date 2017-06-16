@@ -2,6 +2,30 @@ package io.circe.benchmarks
 
 import io.github.netvl.picopickle.backends.jawn.JsonPickler._
 
+trait VersionSpecificWritingSpec { self: WritingBenchmarkSpec =>
+  import benchmark._
+
+  "The 2.10 writing benchmark" should "correctly write integers using Picopickle" in {
+    assert(decodeInts(writeIntsPico) === Some(ints))
+  }
+  
+  it should "correctly write case classes using Picopickle" in {
+    assert(decodeFoos(writeFoosPico) === Some(foos))
+  }
+}
+
+trait VersionSpecificReadingSpec { self: ReadingBenchmarkSpec =>
+  import benchmark._
+
+  "The 2.10 reading benchmark" should "correctly read integers using Picopickle" in {
+    assert(readFoosPico === foos)
+  }
+  
+  it should "correctly read case classes using Picopickle" in {
+    assert(readIntsPico === ints)
+  }
+}
+
 trait VersionSpecificDecodingSpec { self: DecodingBenchmarkSpec =>
   import benchmark._
 

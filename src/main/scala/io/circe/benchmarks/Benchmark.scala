@@ -16,6 +16,58 @@ class ExampleData extends ArgonautData with CirceData with SprayData with PlayDa
 }
 
 /**
+ * Compare the performance of writing operations.
+ *
+ * The following command will run the benchmarks with reasonable settings:
+ *
+ * > sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.CirceOnlyWritingBenchmark"
+ */
+@State(Scope.Thread)
+@BenchmarkMode(Array(Mode.Throughput))
+@OutputTimeUnit(TimeUnit.SECONDS)
+class CirceOnlyWritingBenchmark extends ExampleData with CirceWriting
+
+/**
+ * Compare the performance of reading operations.
+ *
+ * The following command will run the benchmarks with reasonable settings:
+ *
+ * > sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.CirceOnlyReadingBenchmark"
+ */
+@State(Scope.Thread)
+@BenchmarkMode(Array(Mode.Throughput))
+@OutputTimeUnit(TimeUnit.SECONDS)
+class CirceOnlyReadingBenchmark extends ExampleData with CirceReading
+
+/**
+ * Compare the performance of writing operations.
+ *
+ * The following command will run the benchmarks with reasonable settings:
+ *
+ * > sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.WritingBenchmark"
+ */
+@State(Scope.Thread)
+@BenchmarkMode(Array(Mode.Throughput))
+@OutputTimeUnit(TimeUnit.SECONDS)
+class WritingBenchmark extends ExampleData
+  with ArgonautWriting with CirceWriting with SprayWriting with PlayWriting
+  with PicopickleWriting with Json4sWriting with JacksonWriting
+
+/**
+ * Compare the performance of reading operations.
+ *
+ * The following command will run the benchmarks with reasonable settings:
+ *
+ * > sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.ReadingBenchmark"
+ */
+@State(Scope.Thread)
+@BenchmarkMode(Array(Mode.Throughput))
+@OutputTimeUnit(TimeUnit.SECONDS)
+class ReadingBenchmark extends ExampleData
+  with ArgonautReading with CirceReading with SprayReading with PlayReading
+  with PicopickleReading with Json4sReading with JacksonReading
+
+/**
  * Compare the performance of encoding operations.
  *
  * The following command will run the benchmarks with reasonable settings:

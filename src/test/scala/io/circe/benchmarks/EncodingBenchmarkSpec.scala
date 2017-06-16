@@ -29,7 +29,7 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
   }
 
   it should "correctly encode integers using Json4s" in {
-    assert(decodeInts(JsonMethods.compact(encodeInts4s)) === Some(ints))
+    assert(decodeInts(JsonMethods.compact(encodeIntsJson4s)) === Some(ints))
   }
 
   it should "correctly encode integers using Jackson" in {
@@ -49,7 +49,7 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
   }
 
   it should "correctly encode case classes using Json4s" in {
-    assert(decodeFoos(JsonMethods.compact(encodeFoos4s)) === Some(foos))
+    assert(decodeFoos(JsonMethods.compact(encodeFoosJson4s)) === Some(foos))
   }
 
   it should "correctly encode case classes using Jackson" in {

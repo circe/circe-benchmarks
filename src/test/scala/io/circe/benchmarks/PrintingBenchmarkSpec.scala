@@ -31,7 +31,7 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
   }
 
   it should "correctly print integers using Json4s" in {
-    assert(decodeInts(printInts4s) === Some(ints))
+    assert(decodeInts(printIntsJson4s) === Some(ints))
   }
 
   it should "correctly print integers using Jackson" in {
@@ -55,7 +55,7 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
   }
 
   it should "correctly print case classes using Json4s" in {
-    assert(decodeFoos(printFoos4s) === Some(foos))
+    assert(decodeFoos(printFoosJson4s) === Some(foos))
   }
 
   it should "correctly print case classes using Jackson" in {

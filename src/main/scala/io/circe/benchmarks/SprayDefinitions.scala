@@ -29,6 +29,22 @@ trait SprayData { self: ExampleData =>
   val intsS: JsValue = encodeS(ints)
 }
 
+trait SprayWriting { self: ExampleData =>
+  @Benchmark
+  def writeFoosSpray: String = encodeS(foos).compactPrint
+
+  @Benchmark
+  def writeIntsSpray: String = encodeS(ints).compactPrint
+}
+
+trait SprayReading { self: ExampleData =>
+  @Benchmark
+  def readFoosSpray: Map[String, Foo] = JsonParser(foosJson).convertTo[Map[String, Foo]]
+
+  @Benchmark
+  def readIntsSpray: List[Int] = JsonParser(intsJson).convertTo[List[Int]]
+}
+
 trait SprayEncoding { self: ExampleData =>
   @Benchmark
   def encodeFoosSpray: JsValue = encodeS(foos)

@@ -25,6 +25,22 @@ trait PlayData { self: ExampleData =>
   val intsP: JsValue = encodeP(ints)
 }
 
+trait PlayWriting { self: ExampleData =>
+  @Benchmark
+  def writeFoosPlay: String = Json.stringify(encodeP(foos))
+
+  @Benchmark
+  def writeIntsPlay: String = Json.stringify(encodeP(ints))
+}
+
+trait PlayReading { self: ExampleData =>
+  @Benchmark
+  def readFoosPlay: Map[String, Foo] = Json.parse(foosJson).as[Map[String, Foo]]
+
+  @Benchmark
+  def readIntsPlay: List[Int] = Json.parse(intsJson).as[List[Int]]
+}
+
 trait PlayEncoding { self: ExampleData =>
   @Benchmark
   def encodeFoosPlay: JsValue = encodeP(foos)

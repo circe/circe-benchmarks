@@ -26,6 +26,22 @@ trait ArgonautData { self: ExampleData =>
   val intsA: Json = encodeA(ints)
 }
 
+trait ArgonautWriting { self: ExampleData =>
+  @Benchmark
+  def writeFoosArgonaut: String = encodeA(foos).nospaces
+
+  @Benchmark
+  def writeIntsArgonaut: String = encodeA(ints).nospaces
+}
+
+trait ArgonautReading { self: ExampleData =>
+  @Benchmark
+  def readFoosArgonaut: Map[String, Foo] = Parse.decodeOption[Map[String, Foo]](foosJson).get
+
+  @Benchmark
+  def readIntsArgonaut: List[Int] = Parse.decodeOption[List[Int]](intsJson).get
+}
+
 trait ArgonautEncoding { self: ExampleData =>
   @Benchmark
   def encodeFoosArgonaut: Json = encodeA(foos)

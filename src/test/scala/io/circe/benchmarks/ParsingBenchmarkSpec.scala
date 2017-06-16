@@ -24,7 +24,7 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
   }
 
   it should "correctly parse integers using Json4s" in {
-    assert(parseInts4s === ints4s)
+    assert(parseIntsJson4s === ints4s)
   }
 
   it should "correctly parse integers using Jackson" in {
@@ -48,7 +48,7 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
   }
 
   it should "correctly parse case classes using Json4s" in {
-    assert(parseFoos4s === foos4s)
+    assert(parseFoosJson4s === foos4s)
   }
 
   it should "correctly parse case classes using Jackson" in {
