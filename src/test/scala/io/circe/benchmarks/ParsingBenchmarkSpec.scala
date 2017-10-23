@@ -2,7 +2,7 @@ package io.circe.benchmarks
 
 import org.scalatest.FlatSpec
 
-class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
+class ParsingBenchmarkSpec extends FlatSpec {
   val benchmark: ParsingBenchmark = new ParsingBenchmark
 
   import benchmark._
@@ -27,6 +27,10 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
     assert(parseIntsJson4s === ints4s)
   }
 
+  it should "correctly parse integers using Play JSON" in {
+    assert(parseIntsPlay === intsP)
+  }
+
   it should "correctly parse integers using Jackson" in {
     assert(parseIntsJackson === intsJackson)
   }
@@ -49,6 +53,10 @@ class ParsingBenchmarkSpec extends FlatSpec with VersionSpecificParsingSpec {
 
   it should "correctly parse case classes using Json4s" in {
     assert(parseFoosJson4s === foos4s)
+  }
+
+  it should "correctly parse case classes using Play JSON" in {
+    assert(parseFoosPlay === foosP)
   }
 
   it should "correctly parse case classes using Jackson" in {

@@ -3,7 +3,7 @@ package io.circe.benchmarks
 import argonaut.Parse, argonaut.Argonaut._
 import org.scalatest.FlatSpec
 
-class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
+class PrintingBenchmarkSpec extends FlatSpec {
   val benchmark: PrintingBenchmark = new PrintingBenchmark
 
   import benchmark._
@@ -34,6 +34,10 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
     assert(decodeInts(printIntsJson4s) === Some(ints))
   }
 
+  it should "correctly print integers using Play JSON" in {
+    assert(decodeInts(printIntsPlay) === Some(ints))
+  }
+
   it should "correctly print integers using Jackson" in {
     assert(decodeInts(printIntsJackson) === Some(ints))
   }
@@ -56,6 +60,10 @@ class PrintingBenchmarkSpec extends FlatSpec with VersionSpecificPrintingSpec {
 
   it should "correctly print case classes using Json4s" in {
     assert(decodeFoos(printFoosJson4s) === Some(foos))
+  }
+
+  it should "correctly print case classes using Play JSON" in {
+    assert(decodeFoos(printFoosPlay) === Some(foos))
   }
 
   it should "correctly print case classes using Jackson" in {

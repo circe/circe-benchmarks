@@ -2,7 +2,7 @@ package io.circe.benchmarks
 
 import org.openjdk.jmh.annotations._
 import play.api.libs.functional.syntax._
-import play.api.libs.json.{ Format, JsPath, JsValue, Json, Writes }
+import play.api.libs.json.{ Format, Json, JsPath, JsValue, Writes }
 
 /**
  * Note that this file appears in both the scala-2.11 and scala-2.12 source trees, and any changes

@@ -42,12 +42,16 @@ trait CirceDecoding { self: ExampleData =>
   def decodeIntsCirce: List[Int] = intsC.as[List[Int]].right.getOrElse(throw new Exception)
 }
 
+object CircePrinting {
+  val p = io.circe.Printer.noSpaces.copy(reuseWriters = true)
+}
+
 trait CircePrinting { self: ExampleData =>
   @Benchmark
-  def printFoosCirce: String = foosC.noSpaces
+  def printFoosCirce: String = CircePrinting.p.pretty(foosC)
 
   @Benchmark
-  def printIntsCirce: String = intsC.noSpaces
+  def printIntsCirce: String = CircePrinting.p.pretty(intsC)
 
   @Benchmark
   def printFoosCirceJackson: String = jackson.jacksonPrint(foosC)

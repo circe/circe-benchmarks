@@ -2,7 +2,7 @@ package io.circe.benchmarks
 
 import org.scalatest.FlatSpec
 
-class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
+class DecodingBenchmarkSpec extends FlatSpec {
   val benchmark: DecodingBenchmark = new DecodingBenchmark
 
   import benchmark._
@@ -23,6 +23,10 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
     assert(decodeIntsJson4s === ints)
   }
 
+  it should "correctly decode integers using Play JSON" in {
+    assert(decodeIntsPlay === ints)
+  }
+
   it should "correctly decode integers using Jackson" in {
     assert(decodeIntsJackson === ints)
   }
@@ -41,6 +45,10 @@ class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
 
   it should "correctly decode case classes using Json4s" in {
     assert(decodeFoosJson4s === foos)
+  }
+
+  it should "correctly decode case classes using Play JSON" in {
+    assert(decodeFoosPlay === foos)
   }
 
   it should "correctly decode case classes using Jackson" in {

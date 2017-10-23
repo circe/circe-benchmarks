@@ -3,7 +3,7 @@ package io.circe.benchmarks
 import argonaut.Parse, argonaut.Argonaut._
 import org.scalatest.FlatSpec
 
-class WritingBenchmarkSpec extends FlatSpec with VersionSpecificWritingSpec {
+class WritingBenchmarkSpec extends FlatSpec {
   val benchmark: WritingBenchmark = new WritingBenchmark
 
   import benchmark._
@@ -30,6 +30,10 @@ class WritingBenchmarkSpec extends FlatSpec with VersionSpecificWritingSpec {
     assert(decodeInts(writeIntsJson4s) === Some(ints))
   }
 
+  it should "correctly write integers using Play JSON" in {
+    assert(decodeInts(writeIntsPlay) === Some(ints))
+  }
+
   // TODO: Figure out why this is failing.
   ignore should "correctly write integers using Jackson" in {
     assert(decodeFoos(writeIntsJackson) === Some(ints))
@@ -49,6 +53,10 @@ class WritingBenchmarkSpec extends FlatSpec with VersionSpecificWritingSpec {
 
   it should "correctly write case classes using Json4s" in {
     assert(decodeFoos(writeFoosJson4s) === Some(foos))
+  }
+
+  it should "correctly write case classes using Play JSON" in {
+    assert(decodeFoos(writeFoosPlay) === Some(foos))
   }
 
   it should "correctly write case classes using Jackson" in {
