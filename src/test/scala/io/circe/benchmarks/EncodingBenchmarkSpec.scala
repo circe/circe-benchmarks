@@ -4,8 +4,9 @@ import argonaut.Parse
 import argonaut.Argonaut._
 import org.json4s.jackson.JsonMethods
 import org.scalatest.FlatSpec
+import play.api.libs.json.Json
 
-class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
+class EncodingBenchmarkSpec extends FlatSpec {
   val benchmark: EncodingBenchmark = new EncodingBenchmark
 
   import benchmark._
@@ -32,6 +33,10 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
     assert(decodeInts(JsonMethods.compact(encodeIntsJson4s)) === Some(ints))
   }
 
+  it should "correctly encode integers using Play JSON" in {
+    assert(decodeInts(Json.prettyPrint(encodeIntsPlay)) === Some(ints))
+  }
+
   it should "correctly encode integers using Jackson" in {
     assert(decodeInts(mapper.writeValueAsString(encodeIntsJackson)) === Some(ints))
   }
@@ -50,6 +55,10 @@ class EncodingBenchmarkSpec extends FlatSpec with VersionSpecificEncodingSpec {
 
   it should "correctly encode case classes using Json4s" in {
     assert(decodeFoos(JsonMethods.compact(encodeFoosJson4s)) === Some(foos))
+  }
+
+  it should "correctly encode case classes using Play JSON" in {
+    assert(decodeFoos(Json.prettyPrint(encodeFoosPlay)) === Some(foos))
   }
 
   it should "correctly encode case classes using Jackson" in {

@@ -2,7 +2,7 @@ package io.circe.benchmarks
 
 import org.scalatest.FlatSpec
 
-class DecodingBenchmarkSpec extends FlatSpec with VersionSpecificDecodingSpec {
+class DecodingBenchmarkSpec extends FlatSpec {
   val benchmark: DecodingBenchmark = new DecodingBenchmark
 
   import benchmark._

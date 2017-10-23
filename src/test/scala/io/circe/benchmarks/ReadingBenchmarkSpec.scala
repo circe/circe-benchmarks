@@ -2,7 +2,7 @@ package io.circe.benchmarks
 
 import org.scalatest.FlatSpec
 
-class ReadingBenchmarkSpec extends FlatSpec with VersionSpecificReadingSpec {
+class ReadingBenchmarkSpec extends FlatSpec {
   val benchmark: ReadingBenchmark = new ReadingBenchmark
 
   import benchmark._
@@ -23,6 +23,10 @@ class ReadingBenchmarkSpec extends FlatSpec with VersionSpecificReadingSpec {
     assert(readIntsJson4s === ints)
   }
 
+  it should "correctly read integers using Play JSON" in {
+    assert(readIntsPlay === ints)
+  }
+
   it should "correctly read integers using Jackson" in {
     assert(readIntsJackson === ints)
   }
@@ -41,6 +45,10 @@ class ReadingBenchmarkSpec extends FlatSpec with VersionSpecificReadingSpec {
 
   it should "correctly read case classes using Json4s" in {
     assert(readFoosJson4s === foos)
+  }
+
+  it should "correctly read case classes using Play JSON" in {
+    assert(readFoosPlay === foos)
   }
 
   it should "correctly read case classes using Jackson" in {
