@@ -13,7 +13,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.9.0-M1"
+val circeVersion = "0.9.0-M2"
 val scalaTestVersion = "3.0.4"
 
 val baseSettings = Seq(
@@ -53,7 +53,7 @@ lazy val benchmark = project.in(file("."))
   .settings(
     libraryDependencies ++= Seq(
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.8.10",
-      "com.typesafe.play" %% "play-json" % "2.6.6",
+      "com.typesafe.play" %% "play-json" % "2.6.7",
       "io.argonaut" %% "argonaut" % "6.2",
       "io.spray" %% "spray-json" % "1.3.3",
       "org.json4s" %% "json4s-jackson" % "3.5.3",
