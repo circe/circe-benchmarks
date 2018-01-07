@@ -13,7 +13,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.9.0-M2"
+val circeVersion = "0.9.0"
 val scalaTestVersion = "3.0.4"
 
 val baseSettings = Seq(
@@ -52,20 +52,20 @@ lazy val benchmark = project.in(file("."))
   .settings(baseSettings ++ noPublishSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.8.10",
-      "com.typesafe.play" %% "play-json" % "2.6.7",
-      "io.argonaut" %% "argonaut" % "6.2",
-      "io.spray" %% "spray-json" % "1.3.3",
-      "org.json4s" %% "json4s-jackson" % "3.5.3",
+      "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.2",
+      "com.typesafe.play" %% "play-json" % "2.6.8",
+      "io.argonaut" %% "argonaut" % "6.2.1",
+      "io.spray" %% "spray-json" % "1.3.4",
+      "org.json4s" %% "json4s-jackson" % "3.6.0-M2",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
-      compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+      compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
     ),
     libraryDependencies ++= circeDependencies,
     libraryDependencies ++= (
       CrossVersion.partialVersion(scalaVersion.value) match {
         case Some((2, 10)) => Nil
         case _ => Seq(
-          "io.circe" %% "circe-derivation" % "0.8.0-M2"
+          "io.circe" %% "circe-derivation" % "0.9.0-M1"
         )
       }
     )
