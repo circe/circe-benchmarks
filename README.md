@@ -12,47 +12,46 @@ See [Benchmark.scala](src/main/scala/io/circe/benchmarks/Benchmark.scala) for th
 
 The following commands will run the individual benchmarks:
 ```bash
-sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.EncodingBenchmark"
-sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.DecodingBenchmark"
-sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.ParsingBenchmark"
-sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.PrintingBenchmark"
+sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.ReadingBenchmark"
+sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.WritingBenchmark"
 ```
 
 ## Results
 
-Here are decoding and encoding results for circe 0.7.0-M2 on Scala 2.11 against Argonaut, Play JSON, Picopickle, and
-Spray. The `Foos` benchmarks measure encoding and decoding a relatively complex map of case classes with several
+Here are reading and writing results for circe 0.9.0 on Scala 2.12 against Argonaut, JSON4S, Play JSON, and Spray.
+The `Foos` benchmarks measure encoding and decoding a relatively complex map of case classes with several
 members, while the `Ints` benchmarks work with a list of integers.
 
 ```
-Benchmark                                Mode  Cnt      Score      Error  Units
-DecodingBenchmark.decodeFoosCirce       thrpt  100  10161.304 ±  102.923  ops/s
-DecodingBenchmark.decodeFoosArgonaut    thrpt  100   2786.826 ±   43.675  ops/s
-DecodingBenchmark.decodeFoosPlay        thrpt  100   1974.245 ±    9.858  ops/s
-DecodingBenchmark.decodeFoosPico        thrpt  100   2106.936 ±   31.172  ops/s
-DecodingBenchmark.decodeFoosSpray       thrpt  100   8193.956 ±   38.757  ops/s
+Benchmark                            Mode  Cnt      Score     Error  Units
+ReadingBenchmark.readFoosArgonaut   thrpt   40   1408.407 ±  27.742  ops/s
+ReadingBenchmark.readFoosCirce      thrpt   40   3523.559 ±  32.737  ops/s
+ReadingBenchmark.readFoosJson4s     thrpt   40    911.984 ±  12.718  ops/s
+ReadingBenchmark.readFoosPlay       thrpt   40   1239.258 ±   9.349  ops/s
+ReadingBenchmark.readFoosSpray      thrpt   40   2198.621 ±  19.439  ops/s
 
-DecodingBenchmark.decodeIntsCirce       thrpt  100  50399.910 ±  156.052  ops/s
-DecodingBenchmark.decodeIntsArgonaut    thrpt  100  20472.141 ±  412.459  ops/s
-DecodingBenchmark.decodeIntsPlay        thrpt  100  15146.795 ±   68.217  ops/s
-DecodingBenchmark.decodeIntsPico        thrpt  100  15760.650 ±  972.880  ops/s
-DecodingBenchmark.decodeIntsSpray       thrpt  100  81535.344 ±  293.525  ops/s
+ReadingBenchmark.readIntsArgonaut   thrpt   40   8228.883 ±  29.732  ops/s
+ReadingBenchmark.readIntsCirce      thrpt   40  18131.610 ± 109.304  ops/s
+ReadingBenchmark.readIntsJson4s     thrpt   40   5371.564 ±  60.167  ops/s
+ReadingBenchmark.readIntsPlay       thrpt   40   9462.100 ± 257.812  ops/s
+ReadingBenchmark.readIntsSpray      thrpt   40  15718.698 ± 236.063  ops/s
 
-Benchmark                                Mode  Cnt      Score      Error  Units
-EncodingBenchmark.encodeFoosCirce       thrpt  100   8565.560 ±  107.385  ops/s
-EncodingBenchmark.encodeFoosArgonaut    thrpt  100   6736.379 ±   15.906  ops/s
-EncodingBenchmark.encodeFoosPlay        thrpt  100   1765.981 ±    4.078  ops/s
-EncodingBenchmark.encodeFoosPico        thrpt  100   5779.484 ±   26.803  ops/s
-EncodingBenchmark.encodeFoosSpray       thrpt  100   6561.330 ±   29.160  ops/s
+Benchmark                            Mode  Cnt      Score     Error  Units
+WritingBenchmark.writeFoosArgonaut  thrpt   40   2448.122 ±  40.688  ops/s
+WritingBenchmark.writeFoosCirce     thrpt   40   3807.751 ±  50.072  ops/s
+WritingBenchmark.writeFoosJson4s    thrpt   40    842.487 ±  24.154  ops/s
+WritingBenchmark.writeFoosPlay      thrpt   40   2612.410 ±  14.109  ops/s
+WritingBenchmark.writeFoosSpray     thrpt   40   3001.401 ±  40.398  ops/s
 
-EncodingBenchmark.encodeIntsCirce       thrpt  100  98093.604 ±  223.612  ops/s
-EncodingBenchmark.encodeIntsArgonaut    thrpt  100  80580.759 ±  323.298  ops/s
-EncodingBenchmark.encodeIntsPlay        thrpt  100  29823.703 ±  451.211  ops/s
-EncodingBenchmark.encodeIntsPico        thrpt  100  37110.701 ±  145.859  ops/s
-EncodingBenchmark.encodeIntsSpray       thrpt  100  43733.808 ± 2810.698  ops/s
+WritingBenchmark.writeIntsArgonaut  thrpt   40  15023.165 ± 408.761  ops/s
+WritingBenchmark.writeIntsCirce     thrpt   40  29487.908 ± 260.237  ops/s
+WritingBenchmark.writeIntsJson4s    thrpt   40   4443.636 ±  64.243  ops/s
+WritingBenchmark.writeIntsPlay      thrpt   40   4279.746 ±  19.702  ops/s
+WritingBenchmark.writeIntsSpray     thrpt   40  16974.388 ± 219.184  ops/s
 ```
 
-(Please see the commands above for the parsing and printing benchmarks.)
+(Note that "reading" here includes both parsing and decoding, while "writing" is encoding and printing. It's also
+possible to run e.g. decoding or encoding benchmarks individually; see the benchmark source for details.)
 
 ## Contributors and participation
 
