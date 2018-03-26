@@ -54,21 +54,14 @@ lazy val benchmark = project.in(file("."))
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.4",
       "com.typesafe.play" %% "play-json" % "2.6.9",
       "io.argonaut" %% "argonaut" % "6.2.1",
+      "io.circe" %% "circe-derivation" % "0.9.0-M2",
       "io.circe" %% "circe-jackson29" % "0.9.0",
       "io.spray" %% "spray-json" % "1.3.4",
       "org.json4s" %% "json4s-jackson" % "3.6.0-M2",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
       compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
     ),
-    libraryDependencies ++= circeDependencies,
-    libraryDependencies ++= (
-      CrossVersion.partialVersion(scalaVersion.value) match {
-        case Some((2, 10)) => Nil
-        case _ => Seq(
-          "io.circe" %% "circe-derivation" % "0.9.0-M2"
-        )
-      }
-    )
+    libraryDependencies ++= circeDependencies
   )
   .enablePlugins(JmhPlugin)
 

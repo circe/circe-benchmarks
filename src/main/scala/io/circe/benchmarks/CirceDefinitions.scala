@@ -3,6 +3,11 @@ package io.circe.benchmarks
 import io.circe._, io.circe.jackson, io.circe.jawn.{ decode, parse }
 import org.openjdk.jmh.annotations._
 
+trait CirceFooInstances {
+  implicit val circeEncodeFoo: Encoder[Foo] = io.circe.derivation.deriveEncoder
+  implicit val circeDecodeFoo: Decoder[Foo] = io.circe.derivation.deriveDecoder
+}
+
 trait CirceData { self: ExampleData =>
   @inline def encodeC[A](a: A)(implicit encode: Encoder[A]): Json = encode(a)
 
