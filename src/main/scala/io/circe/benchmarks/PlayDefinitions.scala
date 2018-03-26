@@ -4,10 +4,6 @@ import org.openjdk.jmh.annotations._
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{ Format, Json, JsPath, JsValue, Writes }
 
-/**
- * Note that this file appears in both the scala-2.11 and scala-2.12 source trees, and any changes
- * should be reflected in both places.
- */
 trait PlayFooInstances {
   implicit val playFormatFoo: Format[Foo] = (
     (JsPath \ "s").format[String] and
