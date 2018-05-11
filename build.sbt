@@ -58,8 +58,7 @@ lazy val benchmark = project.in(file("."))
       "io.circe" %% "circe-jackson29" % "0.9.0",
       "io.spray" %% "spray-json" % "1.3.4",
       "org.json4s" %% "json4s-jackson" % "3.6.0-M3",
-      "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
-      compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
+      "org.scalatest" %% "scalatest" % scalaTestVersion % Test
     ),
     libraryDependencies ++= circeDependencies
   )
