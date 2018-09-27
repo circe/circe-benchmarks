@@ -13,7 +13,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.10.0-M1"
+val circeVersion = "0.10.0"
 val scalaTestVersion = "3.0.5"
 
 val baseSettings = Seq(
@@ -51,13 +51,13 @@ lazy val benchmark = project.in(file("."))
   .settings(baseSettings ++ noPublishSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.5",
-      "com.typesafe.play" %% "play-json" % "2.6.9",
-      "io.argonaut" %% "argonaut" % "6.2.1",
-      "io.circe" %% "circe-derivation" % "0.9.0-M3",
-      "io.circe" %% "circe-jackson29" % "0.9.0",
+      "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.7",
+      "com.typesafe.play" %% "play-json" % "2.7.0-M1",
+      "io.argonaut" %% "argonaut" % "6.2.2",
+      "io.circe" %% "circe-derivation" % "0.10.0-M1",
+      "io.circe" %% "circe-jackson29" % "0.10.0",
       "io.spray" %% "spray-json" % "1.3.4",
-      "org.json4s" %% "json4s-jackson" % "3.6.0-M3",
+      "org.json4s" %% "json4s-jackson" % "3.6.1",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test
     ),
     libraryDependencies ++= circeDependencies
