@@ -10,6 +10,7 @@ val compilerOptions = Seq(
   "-Yno-adapted-args",
   "-Ywarn-dead-code",
   "-Ywarn-numeric-widen",
+  "-Ywarn-unused-import",
   "-Xfuture"
 )
 
@@ -17,12 +18,7 @@ val circeVersion = "0.10.1"
 val scalaTestVersion = "3.0.5"
 
 val baseSettings = Seq(
-  scalacOptions ++= compilerOptions ++ (
-    CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, p)) if p >= 11 => Seq("-Ywarn-unused-import")
-      case _ => Nil
-    }
-  ),
+  scalacOptions ++= compilerOptions,
   scalacOptions in (Compile, console) ~= {
     _.filterNot(Set("-Ywarn-unused-import"))
   },
@@ -33,12 +29,7 @@ val baseSettings = Seq(
     Resolver.sonatypeRepo("releases"),
     Resolver.sonatypeRepo("snapshots")
   ),
-  coverageHighlighting := (
-    CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, 10)) => false
-      case _ => true
-    }
-  ),
+  coverageHighlighting := true,
   coverageScalacPluginVersion := "1.3.0"
 )
 
