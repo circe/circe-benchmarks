@@ -48,7 +48,7 @@ lazy val benchmark = project.in(file("."))
       "io.circe" %% "circe-derivation" % "0.11.0-M1",
       "io.circe" %% "circe-jackson29" % "0.10.0",
       "io.spray" %% "spray-json" % "1.3.5",
-      "org.json4s" %% "json4s-jackson" % "3.6.3",
+      "org.json4s" %% "json4s-jackson" % "3.6.4",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test
     ),
     libraryDependencies ++= circeDependencies
