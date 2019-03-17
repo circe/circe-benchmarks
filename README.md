@@ -23,7 +23,6 @@ and Spray. The `Foos` benchmarks measure encoding and decoding a relatively comp
 members, while the `Ints` benchmarks work with a list of integers.
 
 ```
-
 Benchmark                            Mode  Cnt      Score      Error  Units
 ReadingBenchmark.readFoosArgonaut   thrpt   40   1364.945 ±   24.378  ops/s
 ReadingBenchmark.readFoosCirce      thrpt   40   3891.951 ±    7.710  ops/s
