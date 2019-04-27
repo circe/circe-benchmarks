@@ -34,11 +34,6 @@ class WritingBenchmarkSpec extends FlatSpec {
     assert(decodeInts(writeIntsPlay) === Some(ints))
   }
 
-  // TODO: Figure out why this is failing.
-  ignore should "correctly write integers using Jackson" in {
-    assert(decodeFoos(writeIntsJackson) === Some(ints))
-  }
-
   it should "correctly write case classes using Circe" in {
     assert(decodeFoos(writeFoosCirce) === Some(foos))
   }
@@ -57,9 +52,5 @@ class WritingBenchmarkSpec extends FlatSpec {
 
   it should "correctly write case classes using Play JSON" in {
     assert(decodeFoos(writeFoosPlay) === Some(foos))
-  }
-
-  it should "correctly write case classes using Jackson" in {
-    assert(decodeFoos(writeFoosJackson) === Some(foos))
   }
 }

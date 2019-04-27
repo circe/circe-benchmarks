@@ -31,10 +31,6 @@ class ParsingBenchmarkSpec extends FlatSpec {
     assert(parseIntsPlay === intsP)
   }
 
-  it should "correctly parse integers using Jackson" in {
-    assert(parseIntsJackson === intsJackson)
-  }
-
   it should "correctly parse case classes using Circe" in {
     assert(parseFoosCirce === foosC)
   }
@@ -57,13 +53,5 @@ class ParsingBenchmarkSpec extends FlatSpec {
 
   it should "correctly parse case classes using Play JSON" in {
     assert(parseFoosPlay === foosP)
-  }
-
-  it should "correctly parse case classes using Jackson" in {
-    /**
-     * A workaround for the fact that I don't remember how `JsonNode` equality
-     * works in Jackson.
-     */
-    assert(mapper.writeValueAsString(parseFoosJackson) === mapper.writeValueAsString(foosJackson))
   }
 }
