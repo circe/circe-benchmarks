@@ -7,10 +7,8 @@ val compilerOptions = Seq(
   "-language:existentials",
   "-language:higherKinds",
   "-unchecked",
-  "-Yno-adapted-args",
   "-Ywarn-dead-code",
   "-Ywarn-numeric-widen",
-  "-Ywarn-unused-import",
   "-Xfuture"
 )
 
