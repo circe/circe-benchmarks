@@ -14,8 +14,14 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.11.1"
-val scalaTestVersion = "3.0.7"
+val circeVersion = "0.12.0-M1"
+val scalaTestVersion = "3.1.0-SNAP9"
+
+def priorTo2_13(scalaVersion: String): Boolean =
+  CrossVersion.partialVersion(scalaVersion) match {
+    case Some((2, minor)) if minor < 13 => true
+    case _                              => false
+}
 
 val baseSettings = Seq(
   scalacOptions ++= compilerOptions,
@@ -30,7 +36,8 @@ val baseSettings = Seq(
     Resolver.sonatypeRepo("snapshots")
   ),
   coverageHighlighting := true,
-  coverageScalacPluginVersion := "1.3.0"
+  coverageScalacPluginVersion := "1.3.0",
+  coverageEnabled := (if (priorTo2_13(scalaVersion.value)) coverageEnabled.value else false)
 )
 
 val circeDependencies = Seq(
@@ -45,8 +52,8 @@ lazy val benchmark = project.in(file("."))
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.9",
       "com.typesafe.play" %% "play-json" % "2.7.4",
       "io.argonaut" %% "argonaut" % "6.2.3",
-      "io.circe" %% "circe-derivation" % "0.11.0-M1",
-      "io.circe" %% "circe-jackson29" % "0.11.1",
+      "io.circe" %% "circe-derivation" % "0.12.0-M1",
+      "io.circe" %% "circe-jackson29" % "0.12.0-M1",
       "io.spray" %% "spray-json" % "1.3.5",
       "org.json4s" %% "json4s-jackson" % "3.6.6",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test
