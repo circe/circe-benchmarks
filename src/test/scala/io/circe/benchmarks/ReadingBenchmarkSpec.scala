@@ -27,10 +27,6 @@ class ReadingBenchmarkSpec extends FlatSpec {
     assert(readIntsPlay === ints)
   }
 
-  it should "correctly read integers using Jackson" in {
-    assert(readIntsJackson === ints)
-  }
-
   it should "correctly read case classes using Circe" in {
     assert(readFoosCirce === foos)
   }
@@ -49,9 +45,5 @@ class ReadingBenchmarkSpec extends FlatSpec {
 
   it should "correctly read case classes using Play JSON" in {
     assert(readFoosPlay === foos)
-  }
-
-  it should "correctly read case classes using Jackson" in {
-    assert(readFoosJackson === foos)
   }
 }

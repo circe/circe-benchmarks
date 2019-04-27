@@ -27,10 +27,6 @@ class DecodingBenchmarkSpec extends FlatSpec {
     assert(decodeIntsPlay === ints)
   }
 
-  it should "correctly decode integers using Jackson" in {
-    assert(decodeIntsJackson === ints)
-  }
-
   it should "correctly decode case classes using Circe" in {
     assert(decodeFoosCirce === foos)
   }
@@ -49,9 +45,5 @@ class DecodingBenchmarkSpec extends FlatSpec {
 
   it should "correctly decode case classes using Play JSON" in {
     assert(decodeFoosPlay === foos)
-  }
-
-  it should "correctly decode case classes using Jackson" in {
-    assert(decodeFoosJackson === foos)
   }
 }
