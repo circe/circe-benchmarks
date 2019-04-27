@@ -37,10 +37,6 @@ class EncodingBenchmarkSpec extends FlatSpec {
     assert(decodeInts(Json.prettyPrint(encodeIntsPlay)) === Some(ints))
   }
 
-  it should "correctly encode integers using Jackson" in {
-    assert(decodeInts(mapper.writeValueAsString(encodeIntsJackson)) === Some(ints))
-  }
-
   it should "correctly encode case classes using Circe" in {
     assert(decodeFoos(encodeFoosCirce.noSpaces) === Some(foos))
   }
@@ -59,9 +55,5 @@ class EncodingBenchmarkSpec extends FlatSpec {
 
   it should "correctly encode case classes using Play JSON" in {
     assert(decodeFoos(Json.prettyPrint(encodeFoosPlay)) === Some(foos))
-  }
-
-  it should "correctly encode case classes using Jackson" in {
-    assert(decodeFoos(mapper.writeValueAsString(encodeFoosJackson)) === Some(foos))
   }
 }
