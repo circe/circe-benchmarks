@@ -42,7 +42,7 @@ lazy val benchmark = project.in(file("."))
   .settings(baseSettings ++ noPublishSettings)
   .settings(
     libraryDependencies ++= Seq(
-      "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.8",
+      "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.9",
       "com.typesafe.play" %% "play-json" % "2.7.3",
       "io.argonaut" %% "argonaut" % "6.2.3",
       "io.circe" %% "circe-derivation" % "0.11.0-M1",
