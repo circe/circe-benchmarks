@@ -45,7 +45,7 @@ lazy val benchmark = project.in(file("."))
       "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.9.9",
       "com.typesafe.play" %% "play-json" % "2.7.4",
       "io.argonaut" %% "argonaut" % "6.2.3",
-      "io.circe" %% "circe-derivation" % "0.11.0-M1",
+      "io.circe" %% "circe-derivation" % "0.12.0-M1",
       "io.circe" %% "circe-jackson29" % "0.11.1",
       "io.spray" %% "spray-json" % "1.3.5",
       "org.json4s" %% "json4s-jackson" % "3.6.6",
