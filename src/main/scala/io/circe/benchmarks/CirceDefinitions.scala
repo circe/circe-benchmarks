@@ -9,42 +9,40 @@ trait CirceFooInstances {
 }
 
 trait CirceData { self: ExampleData =>
-  @inline def encodeC[A](a: A)(implicit encode: Encoder[A]): Json = encode(a)
-
-  val foosC: Json = encodeC(foos)
-  val intsC: Json = encodeC(ints)
+  val foosC: Json = Encoder[Map[String, Foo]].apply(foos)
+  val intsC: Json = Encoder[List[Int]].apply(ints)
 }
 
 trait CirceWriting { self: ExampleData =>
   @Benchmark
-  def writeFoosCirce: String = encodeC(foos).noSpaces
+  def writeFoosCirce: String = CircePrinting.p.pretty(Encoder[Map[String, Foo]].apply(foos))
 
   @Benchmark
-  def writeIntsCirce: String = encodeC(ints).noSpaces
+  def writeIntsCirce: String = CircePrinting.p.pretty(Encoder[List[Int]].apply(ints))
 }
 
 trait CirceReading { self: ExampleData =>
   @Benchmark
-  def readFoosCirce: Map[String, Foo] = decode[Map[String, Foo]](foosJson).right.get
+  def readFoosCirce: Either[Error, Map[String, Foo]] = decode[Map[String, Foo]](foosJson)
 
   @Benchmark
-  def readIntsCirce: List[Int] = decode[List[Int]](intsJson).right.get
+  def readIntsCirce: Either[Error, List[Int]] = decode[List[Int]](intsJson)
 }
 
 trait CirceEncoding { self: ExampleData =>
   @Benchmark
-  def encodeFoosCirce: Json = encodeC(foos)
+  def encodeFoosCirce: Json = Encoder[Map[String, Foo]].apply(foos)
 
   @Benchmark
-  def encodeIntsCirce: Json = encodeC(ints)
+  def encodeIntsCirce: Json = Encoder[List[Int]].apply(ints)
 }
 
 trait CirceDecoding { self: ExampleData =>
   @Benchmark
-  def decodeFoosCirce: Map[String, Foo] = foosC.as[Map[String, Foo]].right.getOrElse(throw new Exception)
+  def decodeFoosCirce: Decoder.Result[Map[String, Foo]] = foosC.as[Map[String, Foo]]
 
   @Benchmark
-  def decodeIntsCirce: List[Int] = intsC.as[List[Int]].right.getOrElse(throw new Exception)
+  def decodeIntsCirce: Decoder.Result[List[Int]] = intsC.as[List[Int]]
 }
 
 object CircePrinting {
@@ -67,14 +65,14 @@ trait CircePrinting { self: ExampleData =>
 
 trait CirceParsing { self: ExampleData =>
   @Benchmark
-  def parseFoosCirce: Json = parse(foosJson).right.getOrElse(throw new Exception)
+  def parseFoosCirce: Either[ParsingFailure, Json] = parse(foosJson)
 
   @Benchmark
-  def parseIntsCirce: Json = parse(intsJson).right.getOrElse(throw new Exception)
+  def parseIntsCirce: Either[ParsingFailure, Json] = parse(intsJson)
 
   @Benchmark
-  def parseFoosCirceJackson: Json = jackson.parse(foosJson).right.getOrElse(throw new Exception)
+  def parseFoosCirceJackson: Either[ParsingFailure, Json] = jackson.parse(foosJson)
 
   @Benchmark
-  def parseIntsCirceJackson: Json = jackson.parse(intsJson).right.getOrElse(throw new Exception)
+  def parseIntsCirceJackson: Either[ParsingFailure, Json] = jackson.parse(intsJson)
 }

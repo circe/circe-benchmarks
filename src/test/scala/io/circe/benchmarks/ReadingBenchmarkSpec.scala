@@ -1,18 +1,18 @@
 package io.circe.benchmarks
 
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class ReadingBenchmarkSpec extends FlatSpec {
+class ReadingBenchmarkSpec extends AnyFlatSpec {
   val benchmark: ReadingBenchmark = new ReadingBenchmark
 
   import benchmark._
 
   "The reading benchmark" should "correctly read integers using Circe" in {
-    assert(readIntsCirce === ints)
+    assert(readIntsCirce === Right(ints))
   }
 
   it should "correctly read integers using Argonaut" in {
-    assert(readIntsArgonaut === ints)
+    assert(readIntsArgonaut === Right(ints))
   }
 
   it should "correctly read integers using Spray JSON" in {
@@ -28,11 +28,11 @@ class ReadingBenchmarkSpec extends FlatSpec {
   }
 
   it should "correctly read case classes using Circe" in {
-    assert(readFoosCirce === foos)
+    assert(readFoosCirce === Right(foos))
   }
 
   it should "correctly read case classes using Argonaut" in {
-    assert(readFoosArgonaut === foos)
+    assert(readFoosArgonaut === Right(foos))
   }
 
   it should "correctly read case classes using Spray JSON" in {

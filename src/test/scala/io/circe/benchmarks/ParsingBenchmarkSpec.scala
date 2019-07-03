@@ -1,22 +1,22 @@
 package io.circe.benchmarks
 
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class ParsingBenchmarkSpec extends FlatSpec {
+class ParsingBenchmarkSpec extends AnyFlatSpec {
   val benchmark: ParsingBenchmark = new ParsingBenchmark
 
   import benchmark._
 
   "The parsing benchmark" should "correctly parse integers using Circe" in {
-    assert(parseIntsCirce === intsC)
+    assert(parseIntsCirce === Right(intsC))
   }
 
   it should "correctly parse integers using Circe Jackson" in {
-    assert(parseIntsCirceJackson === intsC)
+    assert(parseIntsCirceJackson === Right(intsC))
   }
 
   it should "correctly parse integers using Argonaut" in {
-    assert(parseIntsArgonaut === intsA)
+    assert(parseIntsArgonaut === Right(intsA))
   }
 
   it should "correctly parse integers using Spray JSON" in {
@@ -32,15 +32,15 @@ class ParsingBenchmarkSpec extends FlatSpec {
   }
 
   it should "correctly parse case classes using Circe" in {
-    assert(parseFoosCirce === foosC)
+    assert(parseFoosCirce === Right(foosC))
   }
 
   it should "correctly parse case classes using Circe Jackson" in {
-    assert(parseFoosCirceJackson === foosC)
+    assert(parseFoosCirceJackson === Right(foosC))
   }
 
   it should "correctly parse case classes using Argonaut" in {
-    assert(parseFoosArgonaut === foosA)
+    assert(parseFoosArgonaut === Right(foosA))
   }
 
   it should "correctly parse case classes using Spray JSON" in {

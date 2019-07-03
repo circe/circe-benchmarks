@@ -12,7 +12,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.12.0-M3"
+val circeVersion = "0.12.0-M4"
 val scalaTestVersion = "3.1.0-SNAP13"
 
 def priorTo2_13(scalaVersion: String): Boolean =
@@ -47,8 +47,8 @@ lazy val benchmark = project.in(file("."))
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "play-json" % "2.7.4",
       "io.argonaut" %% "argonaut" % "6.2.3",
-      "io.circe" %% "circe-derivation" % "0.12.0-M3",
-      "io.circe" %% "circe-jackson29" % "0.12.0-M3",
+      "io.circe" %% "circe-derivation" % "0.12.0-M4",
+      "io.circe" %% "circe-jackson29" % "0.12.0-M4",
       "io.spray" %% "spray-json" % "1.3.5",
       "org.json4s" %% "json4s-jackson" % "3.6.7",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test

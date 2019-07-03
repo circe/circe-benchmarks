@@ -1,9 +1,9 @@
 package io.circe.benchmarks
 
 import argonaut.Parse, argonaut.Argonaut._
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class WritingBenchmarkSpec extends FlatSpec {
+class WritingBenchmarkSpec extends AnyFlatSpec {
   val benchmark: WritingBenchmark = new WritingBenchmark
 
   import benchmark._
