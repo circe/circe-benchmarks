@@ -9,13 +9,14 @@ trait ArgonautFooInstances {
       case Foo(s, d, i, l, bs) =>
         ("s" := s) ->: ("d" := d) ->: ("i" := i) ->: ("l" := l) ->: ("bs" := bs) ->: jEmptyObject
     },
-    c => for {
-      s  <- (c --\ "s").as[String]
-      d  <- (c --\ "d").as[Double]
-      i  <- (c --\ "i").as[Int]
-      l  <- (c --\ "l").as[Long]
-      bs <- (c --\ "bs").as[List[Boolean]]
-    } yield Foo(s, d, i, l, bs)
+    c =>
+      for {
+        s <- (c --\ "s").as[String]
+        d <- (c --\ "d").as[Double]
+        i <- (c --\ "i").as[Int]
+        l <- (c --\ "l").as[Long]
+        bs <- (c --\ "bs").as[List[Boolean]]
+      } yield Foo(s, d, i, l, bs)
   )
 }
 
@@ -34,7 +35,8 @@ trait ArgonautWriting { self: ExampleData =>
 
 trait ArgonautReading { self: ExampleData =>
   @Benchmark
-  def readFoosArgonaut: Either[Either[String, (String, CursorHistory)], Map[String, Foo]] = Parse.decode[Map[String, Foo]](foosJson)
+  def readFoosArgonaut: Either[Either[String, (String, CursorHistory)], Map[String, Foo]] =
+    Parse.decode[Map[String, Foo]](foosJson)
 
   @Benchmark
   def readIntsArgonaut: Either[Either[String, (String, CursorHistory)], List[Int]] = Parse.decode[List[Int]](intsJson)
