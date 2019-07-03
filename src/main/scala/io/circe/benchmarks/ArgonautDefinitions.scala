@@ -20,42 +20,40 @@ trait ArgonautFooInstances {
 }
 
 trait ArgonautData { self: ExampleData =>
-  @inline def encodeA[A](a: A)(implicit encode: EncodeJson[A]): Json = encode(a)
-
-  val foosA: Json = encodeA(foos)
-  val intsA: Json = encodeA(ints)
+  val foosA: Json = EncodeJson.of[Map[String, Foo]].encode(foos)
+  val intsA: Json = EncodeJson.of[List[Int]].encode(ints)
 }
 
 trait ArgonautWriting { self: ExampleData =>
   @Benchmark
-  def writeFoosArgonaut: String = encodeA(foos).nospaces
+  def writeFoosArgonaut: String = EncodeJson.of[Map[String, Foo]].encode(foos).nospaces
 
   @Benchmark
-  def writeIntsArgonaut: String = encodeA(ints).nospaces
+  def writeIntsArgonaut: String = EncodeJson.of[List[Int]].encode(ints).nospaces
 }
 
 trait ArgonautReading { self: ExampleData =>
   @Benchmark
-  def readFoosArgonaut: Map[String, Foo] = Parse.decodeOption[Map[String, Foo]](foosJson).get
+  def readFoosArgonaut: Either[Either[String, (String, CursorHistory)], Map[String, Foo]] = Parse.decode[Map[String, Foo]](foosJson)
 
   @Benchmark
-  def readIntsArgonaut: List[Int] = Parse.decodeOption[List[Int]](intsJson).get
+  def readIntsArgonaut: Either[Either[String, (String, CursorHistory)], List[Int]] = Parse.decode[List[Int]](intsJson)
 }
 
 trait ArgonautEncoding { self: ExampleData =>
   @Benchmark
-  def encodeFoosArgonaut: Json = encodeA(foos)
+  def encodeFoosArgonaut: Json = EncodeJson.of[Map[String, Foo]].encode(foos)
 
   @Benchmark
-  def encodeIntsArgonaut: Json = encodeA(ints)
+  def encodeIntsArgonaut: Json = EncodeJson.of[List[Int]].encode(ints)
 }
 
 trait ArgonautDecoding { self: ExampleData =>
   @Benchmark
-  def decodeFoosArgonaut: Map[String, Foo] = foosA.as[Map[String, Foo]].result.right.getOrElse(throw new Exception)
+  def decodeFoosArgonaut: DecodeResult[Map[String, Foo]] = foosA.as[Map[String, Foo]]
 
   @Benchmark
-  def decodeIntsArgonaut: List[Int] = intsA.as[List[Int]].result.right.getOrElse(throw new Exception)
+  def decodeIntsArgonaut: DecodeResult[List[Int]] = intsA.as[List[Int]]
 }
 
 trait ArgonautPrinting { self: ExampleData =>
@@ -68,8 +66,8 @@ trait ArgonautPrinting { self: ExampleData =>
 
 trait ArgonautParsing { self: ExampleData =>
   @Benchmark
-  def parseFoosArgonaut: Json = Parse.parse(foosJson).right.getOrElse(throw new Exception)
+  def parseFoosArgonaut: Either[String, Json] = Parse.parse(foosJson)
 
   @Benchmark
-  def parseIntsArgonaut: Json = Parse.parse(intsJson).right.getOrElse(throw new Exception)
+  def parseIntsArgonaut: Either[String, Json] = Parse.parse(intsJson)
 }

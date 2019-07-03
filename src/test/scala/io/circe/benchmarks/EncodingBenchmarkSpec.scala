@@ -3,10 +3,10 @@ package io.circe.benchmarks
 import argonaut.Parse
 import argonaut.Argonaut._
 import org.json4s.jackson.JsonMethods
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 import play.api.libs.json.Json
 
-class EncodingBenchmarkSpec extends FlatSpec {
+class EncodingBenchmarkSpec extends AnyFlatSpec {
   val benchmark: EncodingBenchmark = new EncodingBenchmark
 
   import benchmark._

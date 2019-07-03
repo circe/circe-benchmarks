@@ -1,18 +1,18 @@
 package io.circe.benchmarks
 
-import org.scalatest.FlatSpec
+import org.scalatest.flatspec.AnyFlatSpec
 
-class DecodingBenchmarkSpec extends FlatSpec {
+class DecodingBenchmarkSpec extends AnyFlatSpec {
   val benchmark: DecodingBenchmark = new DecodingBenchmark
 
   import benchmark._
 
   "The decoding benchmark" should "correctly decode integers using Circe" in {
-    assert(decodeIntsCirce === ints)
+    assert(decodeIntsCirce === Right(ints))
   }
 
   it should "correctly decode integers using Argonaut" in {
-    assert(decodeIntsArgonaut === ints)
+    assert(decodeIntsArgonaut.result === Right(ints))
   }
 
   it should "correctly decode integers using Spray JSON" in {
@@ -28,11 +28,11 @@ class DecodingBenchmarkSpec extends FlatSpec {
   }
 
   it should "correctly decode case classes using Circe" in {
-    assert(decodeFoosCirce === foos)
+    assert(decodeFoosCirce === Right(foos))
   }
 
   it should "correctly decode case classes using Argonaut" in {
-    assert(decodeFoosArgonaut === foos)
+    assert(decodeFoosArgonaut.result === Right(foos))
   }
 
   it should "correctly decode case classes using Spray JSON" in {
