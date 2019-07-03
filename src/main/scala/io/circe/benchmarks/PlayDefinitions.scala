@@ -2,16 +2,17 @@ package io.circe.benchmarks
 
 import org.openjdk.jmh.annotations._
 import play.api.libs.functional.syntax._
-import play.api.libs.json.{ Format, Json, JsPath, JsValue, Writes }
+import play.api.libs.json.{ Format, JsPath, JsValue, Json, Writes }
 
 trait PlayFooInstances {
-  implicit val playFormatFoo: Format[Foo] = (
-    (JsPath \ "s").format[String] and
-    (JsPath \ "d").format[Double] and
-    (JsPath \ "i").format[Int] and
-    (JsPath \ "l").format[Long] and
-    (JsPath \ "bs").format[List[Boolean]]
-  )(Foo.apply, unlift(Foo.unapply))
+  implicit val playFormatFoo: Format[Foo] =
+    (JsPath \ "s")
+      .format[String]
+      .and((JsPath \ "d").format[Double])
+      .and((JsPath \ "i").format[Int])
+      .and((JsPath \ "l").format[Long])
+      .and((JsPath \ "bs").format[List[Boolean]])
+  (Foo.apply, unlift(Foo.unapply))
 }
 
 trait PlayData { self: ExampleData =>

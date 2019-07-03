@@ -16,7 +16,7 @@ trait Json4sData extends DefaultWriters { self: ExampleData =>
 
 trait Json4sWriting { self: ExampleData =>
   @Benchmark
-  def writeFoosJson4s: String =  JsonMethods.compact(Extraction.decompose(foos))
+  def writeFoosJson4s: String = JsonMethods.compact(Extraction.decompose(foos))
 
   @Benchmark
   def writeIntsJson4s: String = JsonMethods.compact(Extraction.decompose(ints))
