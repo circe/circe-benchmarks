@@ -2,7 +2,8 @@ organization in ThisBuild := "io.circe"
 
 val compilerOptions = Seq(
   "-deprecation",
-  "-encoding", "UTF-8",
+  "-encoding",
+  "UTF-8",
   "-feature",
   "-language:existentials",
   "-language:higherKinds",
@@ -19,7 +20,7 @@ def priorTo2_13(scalaVersion: String): Boolean =
   CrossVersion.partialVersion(scalaVersion) match {
     case Some((2, minor)) if minor < 13 => true
     case _                              => false
-}
+  }
 
 val baseSettings = Seq(
   scalacOptions ++= compilerOptions,
@@ -41,7 +42,8 @@ val circeDependencies = Seq(
   "io.circe" %% "circe-jawn"
 ).map(_ % circeVersion)
 
-lazy val benchmark = project.in(file("."))
+lazy val benchmark = project
+  .in(file("."))
   .settings(baseSettings ++ noPublishSettings)
   .settings(
     libraryDependencies ++= Seq(
