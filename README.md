@@ -18,36 +18,36 @@ sbt "jmh:run -i 10 -wi 10 -f 2 -t 1 io.circe.benchmarks.WritingBenchmark"
 
 ## Results
 
-Here are reading and writing results for circe 0.11.1 on Scala 2.12.8 against Argonaut, JSON4S, Play JSON,
+Here are reading and writing results for circe 0.12.0-M4 on Scala 2.13.0 against Argonaut, JSON4S, Play JSON,
 and Spray. The `Foos` benchmarks measure encoding and decoding a relatively complex map of case classes with several
 members, while the `Ints` benchmarks work with a list of integers.
 
 ```
-Benchmark                            Mode  Cnt      Score      Error  Units
-ReadingBenchmark.readFoosArgonaut   thrpt   40   1364.945 ±   24.378  ops/s
-ReadingBenchmark.readFoosCirce      thrpt   40   3891.951 ±    7.710  ops/s
-ReadingBenchmark.readFoosJson4s     thrpt   40   1010.018 ±   19.810  ops/s
-ReadingBenchmark.readFoosPlay       thrpt   40   1541.661 ±    2.752  ops/s
-ReadingBenchmark.readFoosSpray      thrpt   40   2237.354 ±   86.858  ops/s
+Benchmark                            Mode  Cnt      Score     Error  Units
+ReadingBenchmark.readFoosArgonaut   thrpt   50   1368.041 ±  12.487  ops/s
+ReadingBenchmark.readFoosCirce      thrpt   50   4067.121 ±  10.111  ops/s
+ReadingBenchmark.readFoosJson4s     thrpt   50   1213.355 ±  20.355  ops/s
+ReadingBenchmark.readFoosPlay       thrpt   50   1143.173 ±   7.156  ops/s
+ReadingBenchmark.readFoosSpray      thrpt   50   3001.075 ±  12.522  ops/s
 
-ReadingBenchmark.readIntsArgonaut   thrpt   40   8912.254 ±  244.544  ops/s
-ReadingBenchmark.readIntsCirce      thrpt   40  17858.676 ±   23.154  ops/s
-ReadingBenchmark.readIntsJson4s     thrpt   40   5337.795 ±   67.310  ops/s
-ReadingBenchmark.readIntsPlay       thrpt   40   6782.925 ±  109.757  ops/s
-ReadingBenchmark.readIntsSpray      thrpt   40  15199.081 ±  385.915  ops/s
+ReadingBenchmark.readIntsArgonaut   thrpt   50   8742.412 ±  53.824  ops/s
+ReadingBenchmark.readIntsCirce      thrpt   50  18082.714 ±  38.067  ops/s
+ReadingBenchmark.readIntsJson4s     thrpt   50   6382.611 ± 162.444  ops/s
+ReadingBenchmark.readIntsPlay       thrpt   50   4646.744 ±  26.968  ops/s
+ReadingBenchmark.readIntsSpray      thrpt   50  18080.313 ± 194.604  ops/s
 
-Benchmark                            Mode  Cnt      Score      Error  Units
-WritingBenchmark.writeFoosArgonaut  thrpt   40   2247.399 ±    7.819  ops/s
-WritingBenchmark.writeFoosCirce     thrpt   40   3814.047 ±   11.015  ops/s
-WritingBenchmark.writeFoosJson4s    thrpt   40   1053.587 ±   34.558  ops/s
-WritingBenchmark.writeFoosPlay      thrpt   40   1978.124 ±    2.657  ops/s
-WritingBenchmark.writeFoosSpray     thrpt   40   3259.941 ±    8.285  ops/s
+Benchmark                            Mode  Cnt      Score     Error  Units
+WritingBenchmark.writeFoosArgonaut  thrpt   50   2334.392 ±  47.225  ops/s
+WritingBenchmark.writeFoosCirce     thrpt   50   4263.396 ±  92.005  ops/s
+WritingBenchmark.writeFoosJson4s    thrpt   50   1633.143 ±   5.642  ops/s
+WritingBenchmark.writeFoosPlay      thrpt   50   2177.584 ±   3.430  ops/s
+WritingBenchmark.writeFoosSpray     thrpt   50   3588.773 ±  11.324  ops/s
 
-WritingBenchmark.writeIntsArgonaut  thrpt   40  16803.414 ±  427.511  ops/s
-WritingBenchmark.writeIntsCirce     thrpt   40  31748.367 ± 1081.470  ops/s
-WritingBenchmark.writeIntsJson4s    thrpt   40   5136.692 ±  113.600  ops/s
-WritingBenchmark.writeIntsPlay      thrpt   40   3890.009 ±  187.022  ops/s
-WritingBenchmark.writeIntsSpray     thrpt   40  17625.977 ±   35.083  ops/s
+WritingBenchmark.writeIntsArgonaut  thrpt   50  17805.687 ± 463.906  ops/s
+WritingBenchmark.writeIntsCirce     thrpt   50  37433.364 ± 146.814  ops/s
+WritingBenchmark.writeIntsJson4s    thrpt   50   8180.624 ±  32.511  ops/s
+WritingBenchmark.writeIntsPlay      thrpt   50   4011.664 ± 118.561  ops/s
+WritingBenchmark.writeIntsSpray     thrpt   50  18803.171 ±  66.265  ops/s
 ```
 
 (Note that "reading" here includes both parsing and decoding, while "writing" is encoding and printing. It's also
