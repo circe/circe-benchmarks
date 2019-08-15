@@ -13,7 +13,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.12.0-RC1"
+val circeVersion = "0.12.0-RC3"
 val scalaTestVersion = "3.1.0-SNAP13"
 
 def priorTo2_13(scalaVersion: String): Boolean =
