@@ -51,7 +51,7 @@ lazy val benchmark = project
       "io.argonaut" %% "argonaut" % "6.3.1",
       "io.circe" %% "circe-derivation" % "0.12.0-M7",
       "io.circe" %% "circe-jackson29" % "0.13.0",
-      "io.spray" %% "spray-json" % "1.3.5",
+      "io.spray" %% "spray-json" % "1.3.6",
       "org.json4s" %% "json4s-jackson" % "3.6.10",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test
     ),
