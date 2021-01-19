@@ -1,9 +1,10 @@
 package io.circe.benchmarks
 
-import java.util.concurrent.TimeUnit
 import org.openjdk.jmh.annotations._
 
-class ExampleData extends ArgonautData with CirceData with SprayData with PlayData with Json4sData {
+import java.util.concurrent.TimeUnit
+
+class ExampleData extends ArgonautData with CirceData with SprayData with PlayData with Json4sData with JsoniterData {
   lazy val ints: List[Int] = (0 to 1000).toList
 
   lazy val foos: Map[String, Foo] = List
@@ -57,6 +58,7 @@ class WritingBenchmark
     with SprayWriting
     with PlayWriting
     with Json4sWriting
+    with JsoniterWriting
 
 /**
  * Compare the performance of reading operations.
@@ -75,6 +77,7 @@ class ReadingBenchmark
     with SprayReading
     with PlayReading
     with Json4sReading
+    with JsoniterReading
 
 /**
  * Compare the performance of encoding operations.
@@ -93,6 +96,7 @@ class EncodingBenchmark
     with SprayEncoding
     with PlayEncoding
     with Json4sEncoding
+    with JsoniterEncoding
 
 /**
  * Compare the performance of decoding operations.
@@ -111,6 +115,7 @@ class DecodingBenchmark
     with SprayDecoding
     with PlayDecoding
     with Json4sDecoding
+    with JsoniterDecoding
 
 /**
  * Compare the performance of printing operations.
@@ -129,6 +134,7 @@ class PrintingBenchmark
     with SprayPrinting
     with PlayPrinting
     with Json4sPrinting
+    with JsoniterPrinting
 
 /**
  * Compare the performance of parsing operations.
@@ -147,3 +153,5 @@ class ParsingBenchmark
     with SprayParsing
     with PlayParsing
     with Json4sParsing
+    with JsoniterParsing
+

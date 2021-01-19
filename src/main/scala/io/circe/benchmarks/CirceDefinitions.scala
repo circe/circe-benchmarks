@@ -15,10 +15,10 @@ trait CirceData { self: ExampleData =>
 
 trait CirceWriting { self: ExampleData =>
   @Benchmark
-  def writeFoosCirce: String = CircePrinting.p.pretty(Encoder[Map[String, Foo]].apply(foos))
+  def writeFoosCirce: String = CircePrinting.p.print(Encoder[Map[String, Foo]].apply(foos))
 
   @Benchmark
-  def writeIntsCirce: String = CircePrinting.p.pretty(Encoder[List[Int]].apply(ints))
+  def writeIntsCirce: String = CircePrinting.p.print(Encoder[List[Int]].apply(ints))
 }
 
 trait CirceReading { self: ExampleData =>
@@ -51,10 +51,10 @@ object CircePrinting {
 
 trait CircePrinting { self: ExampleData =>
   @Benchmark
-  def printFoosCirce: String = CircePrinting.p.pretty(foosC)
+  def printFoosCirce: String = CircePrinting.p.print(foosC)
 
   @Benchmark
-  def printIntsCirce: String = CircePrinting.p.pretty(intsC)
+  def printIntsCirce: String = CircePrinting.p.print(intsC)
 
   @Benchmark
   def printFoosCirceJackson: String = jackson.jacksonPrint(foosC)
