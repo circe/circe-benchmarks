@@ -8,4 +8,10 @@ target/
 .project
 .classpath
 tmp/
-
+.bsp/
+.vscode
+metals.sbt
+project/project/.bloop/circe-benchmarks-build-build.json
+project/.bloop/circe-benchmarks-build.json
+.bloop/
+.metals/

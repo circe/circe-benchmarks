@@ -23,6 +23,24 @@ and Spray. The `Foos` benchmarks measure encoding and decoding a relatively comp
 members, while the `Ints` benchmarks work with a list of integers.
 
 ```
+[info] Benchmark                           Mode  Cnt      Score      Error  Units
+
+[info] ReadingBenchmark.readFoosArgonaut  thrpt   20    896.936 ±   16.620  ops/s
+[info] ReadingBenchmark.readFoosCirce     thrpt   20   3297.492 ±   71.973  ops/s
+[info] ReadingBenchmark.readFoosJson4s    thrpt   20   1153.128 ±   32.758  ops/s
+[info] ReadingBenchmark.readFoosJsoniter  thrpt   20  11847.213 ±  423.737  ops/s
+[info] ReadingBenchmark.readFoosPlay      thrpt   20   1471.093 ±   40.434  ops/s
+[info] ReadingBenchmark.readFoosSpray     thrpt   20   2451.934 ±   57.285  ops/s
+
+[info] ReadingBenchmark.readIntsArgonaut  thrpt   20   7533.894 ±  370.602  ops/s
+[info] ReadingBenchmark.readIntsCirce     thrpt   20  16767.628 ±   68.654  ops/s
+[info] ReadingBenchmark.readIntsJson4s    thrpt   20   7671.447 ±  182.798  ops/s
+[info] ReadingBenchmark.readIntsJsoniter  thrpt   20  60861.281 ± 9193.342  ops/s
+[info] ReadingBenchmark.readIntsPlay      thrpt   20   8048.223 ±   99.219  ops/s
+[info] ReadingBenchmark.readIntsSpray     thrpt   20  17832.592 ±  277.434  ops/s
+
+---
+
 Benchmark                            Mode  Cnt      Score     Error  Units
 ReadingBenchmark.readFoosArgonaut   thrpt   50   1368.041 ±  12.487  ops/s
 ReadingBenchmark.readFoosCirce      thrpt   50   4067.121 ±  10.111  ops/s
