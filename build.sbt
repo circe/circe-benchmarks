@@ -50,7 +50,7 @@ lazy val benchmark = project
       "com.typesafe.play" %% "play-json" % "2.9.2",
       "io.argonaut" %% "argonaut" % "6.3.3",
       "io.circe" %% "circe-derivation" % "0.12.0-M7",
-      "io.circe" %% "circe-jackson29" % "0.13.0",
+      "io.circe" %% "circe-jackson29" % "0.14.0",
       "io.spray" %% "spray-json" % "1.3.6",
       "org.json4s" %% "json4s-jackson" % "3.6.11",
       "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-core" % "2.7.1",
