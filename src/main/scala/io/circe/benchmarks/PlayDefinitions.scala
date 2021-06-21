@@ -12,7 +12,7 @@ trait PlayFooInstances {
       .and((JsPath \ "i").format[Int])
       .and((JsPath \ "l").format[Long])
       .and((JsPath \ "bs").format[List[Boolean]])
-    )(Foo.apply, unlift(Foo.unapply))
+  )(Foo.apply, unlift(Foo.unapply))
 }
 
 trait PlayData { self: ExampleData =>

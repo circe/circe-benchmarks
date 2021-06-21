@@ -1,4 +1,15 @@
-organization in ThisBuild := "io.circe"
+ThisBuild / organization := "io.circe"
+ThisBuild / crossScalaVersions := Seq("2.12.14", "2.13.6")
+ThisBuild / githubWorkflowPublishTargetBranches := Nil
+ThisBuild / githubWorkflowBuild := Seq(
+  WorkflowStep.Use(
+    UseRef.Public(
+      "codecov",
+      "codecov-action",
+      "v1"
+    )
+  )
+)
 
 val compilerOptions = Seq(
   "-deprecation",
