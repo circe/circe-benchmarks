@@ -1,6 +1,6 @@
 # circe-benchmarks
 
-[![Build status](https://img.shields.io/travis/circe/circe-benchmarks/master.svg)](https://travis-ci.org/circe/circe-benchmarks)
+[![Build status](https://img.shields.io/github/workflow/status/circe/circe-benchmarks/Continuous%20Integration.svg)](https://github.com/circe/circe-benchmarks/actions)
 [![Coverage status](https://img.shields.io/codecov/c/github/circe/circe-benchmarks/master.svg)](https://codecov.io/github/circe/circe-benchmarks)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-green.svg)](https://gitter.im/circe/circe)
 
