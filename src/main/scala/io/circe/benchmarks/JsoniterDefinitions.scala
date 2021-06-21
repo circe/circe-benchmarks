@@ -18,13 +18,11 @@ object Codecs {
 }
 
 trait JsoniterData { self: ExampleData =>
-  @inline def encodeJ[A](a: A)(implicit encode: JsonValueCodec[A]): String = {
+  @inline def encodeJ[A](a: A)(implicit encode: JsonValueCodec[A]): String =
     writeToString(a)(encode)
-  }
 
-  @inline def decodeJ[A](a: String)(implicit encode: JsonValueCodec[A]): A = {
+  @inline def decodeJ[A](a: String)(implicit encode: JsonValueCodec[A]): A =
     readFromString(a)(encode)
-  }
 
   val foosJ: String = encodeJ(foos)
   val intsJ: String = encodeJ(ints)
@@ -64,7 +62,7 @@ trait JsoniterDecoding { self: ExampleData =>
 
 trait JsoniterPrinting { self: ExampleData =>
   @Benchmark
-  def printFoosJsoniter: String = encodeJ(decodeJ[Map[String, Foo]](foosJ)  )
+  def printFoosJsoniter: String = encodeJ(decodeJ[Map[String, Foo]](foosJ))
 
   @Benchmark
   def printIntsJsoniter: String = encodeJ(decodeJ[List[Int]](intsJ))

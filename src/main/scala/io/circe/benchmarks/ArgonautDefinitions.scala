@@ -5,9 +5,8 @@ import org.openjdk.jmh.annotations._
 
 trait ArgonautFooInstances {
   implicit val argonautCodecFoo: CodecJson[Foo] = CodecJson(
-    {
-      case Foo(s, d, i, l, bs) =>
-        ("s" := s) ->: ("d" := d) ->: ("i" := i) ->: ("l" := l) ->: ("bs" := bs) ->: jEmptyObject
+    { case Foo(s, d, i, l, bs) =>
+      ("s" := s) ->: ("d" := d) ->: ("i" := i) ->: ("l" := l) ->: ("bs" := bs) ->: jEmptyObject
     },
     c =>
       for {

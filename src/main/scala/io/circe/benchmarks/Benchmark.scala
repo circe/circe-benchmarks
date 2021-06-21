@@ -154,4 +154,3 @@ class ParsingBenchmark
     with PlayParsing
     with Json4sParsing
     with JsoniterParsing
-
