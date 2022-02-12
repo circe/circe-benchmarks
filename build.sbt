@@ -64,8 +64,8 @@ lazy val benchmark = project
       "io.circe" %% "circe-jackson29" % "0.14.0",
       "io.spray" %% "spray-json" % "1.3.6",
       "org.json4s" %% "json4s-jackson" % "4.0.4",
-      "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-core" % "2.13.1",
-      "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-macros" % "2.13.1",
+      "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-core" % "2.13.2",
+      "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-macros" % "2.13.2",
       "org.scalatest" %% "scalatest" % scalaTestVersion % Test
     ),
     libraryDependencies ++= circeDependencies
