@@ -24,7 +24,7 @@ val compilerOptions = Seq(
   "-Xfuture"
 )
 
-val circeVersion = "0.14.1"
+val circeVersion = "0.14.3"
 val scalaTestVersion = "3.2.11"
 
 def priorTo2_13(scalaVersion: String): Boolean =
