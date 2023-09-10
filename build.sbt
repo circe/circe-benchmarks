@@ -25,7 +25,7 @@ val compilerOptions = Seq(
 )
 
 val circeVersion = "0.14.1"
-val scalaTestVersion = "3.2.11"
+val scalaTestVersion = "3.2.17"
 
 def priorTo2_13(scalaVersion: String): Boolean =
   CrossVersion.partialVersion(scalaVersion) match {
