@@ -59,7 +59,7 @@ lazy val benchmark = project
   .settings(
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "play-json" % "2.9.2",
-      "io.argonaut" %% "argonaut" % "6.3.8",
+      "io.argonaut" %% "argonaut" % "6.3.10",
       "io.circe" %% "circe-derivation" % "0.13.0-M5",
       "io.circe" %% "circe-jackson29" % "0.14.0",
       "io.spray" %% "spray-json" % "1.3.6",
